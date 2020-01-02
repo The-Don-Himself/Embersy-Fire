@@ -1,0 +1,23 @@
+{
+  "name": "embersy-fire",
+  "version": "0.0.1",
+  "description": "Fastboot Server for EmberSy Fire",
+  "license": "proprietary",
+  "author": "Don Omondi",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "fastboot-app-server": "^2.0.0",
+    "fastboot-bitbucket-downloader": "^1.0.5",
+    "fastboot-bitbucket-notifier": "^1.0.4"
+  },
+  "engines": {
+    "node": ">= 10.*"
+  },
+  "private": false
+}

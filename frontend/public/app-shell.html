@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Embersy Fire</title>
+    <meta name="description" content="EmberSy Fire is your nifty kickstart package for building ambitious web apps. It comprises of an EmberJs 3.x frontend with a Symfony 4.x (flex) powered backend both glued together using Firebase.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/assets/app.css">
+  </head>
+  <body class="mdc-typography">
+    <div id="splash-screen" class="min-height-as-view-height background-gradient">
+
+      <div class="third_from_top">
+
+          <div class="mdc-layout-grid">
+
+            <div class="mdc-layout-grid__inner">
+              <div class="
+                mdc-layout-grid__cell mdc-layout-grid__cell--align-middle 
+                mdc-layout-grid__cell--span-2-desktop 
+                mdc-layout-grid__cell--span-1-tablet 
+                mdc-layout-grid__cell--span-4-phone">
+              </div>
+
+              <div class="
+                mdc-layout-grid__cell mdc-layout-grid__cell--align-middle 
+                mdc-layout-grid__cell--span-8-desktop 
+                mdc-layout-grid__cell--span-6-tablet 
+                mdc-layout-grid__cell--span-4-phone">
+
+                <div class="text-center pulse-container">
+                  <img class="pulse" src="https://static.embersy-fire.appscale.cloud/logo-home.png" alt="EmberSy Fire" />
+                </div>
+                <figure class="linear-progress-demo">
+                  <div role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate">
+                    <div class="mdc-linear-progress__buffering-dots"></div>
+                    <div class="mdc-linear-progress__buffer"></div>
+                    <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+                      <span class="mdc-linear-progress__bar-inner"></span>
+                    </div>
+                    <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+                      <span class="mdc-linear-progress__bar-inner"></span>
+                    </div>
+                  </div>
+                </figure>
+      
+              </div>
+
+              <div class="
+                mdc-layout-grid__cell mdc-layout-grid__cell--align-middle 
+                mdc-layout-grid__cell--span-2-desktop 
+                mdc-layout-grid__cell--span-1-tablet 
+                mdc-layout-grid__cell--span-4-phone">
+              </div>
+            </div>
+
+          </div>
+
+      </div>
+
+      <div class="background-image" style="background-image: url(https://static.embersy-fire.appscale.cloud/background.jpg)"></div>
+      <div class="background-screen"></div>
+
+    </div>
+
+    <div id="snackbar" class="mdc-snackbar">
+      <div class="mdc-snackbar__surface">
+        <div class="mdc-snackbar__label"
+             role="status"
+             aria-live="polite">
+        </div>
+        <div class="mdc-snackbar__actions">
+          <button type="button" class="mdc-button mdc-snackbar__action"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/firebase-app.js"></script>
+    <script src="/firebase-auth.js"></script>
+    <script src="/firebase-messaging.js"></script>
+    <script src="/firebase-init.js"></script>
+
+    <script src="/assets/app.js"></script>
+  </body>
+</html>

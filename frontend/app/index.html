@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Embersy Fire</title>
+    <meta name="description" content="EmberSy Fire is your nifty kickstart package for building ambitious web apps. It comprises of an EmberJs 3.x frontend with a Symfony 4.x (flex) powered backend both glued together using Firebase.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    {{content-for "head"}}
+    {{content-for "concat-css"}}
+    {{content-for "head-footer"}}
+  </head>
+  <body>
+    {{content-for "body"}}
+    <div id="snackbar" class="mdc-snackbar">
+      <div class="mdc-snackbar__surface">
+        <div class="mdc-snackbar__label"
+             role="status"
+             aria-live="polite">
+        </div>
+        <div class="mdc-snackbar__actions">
+          <button type="button" class="mdc-button mdc-snackbar__action"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/firebase-app.js"></script>
+    <script src="/firebase-auth.js"></script>
+    <script src="/firebase-messaging.js"></script>
+    <script src="/firebase-init.js"></script>
+
+    {{content-for "concat-js"}}
+    {{content-for "body-footer"}}
+  </body>
+</html>
