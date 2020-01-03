@@ -1,15 +1,30 @@
 # Read the documentation: https://symfony.com/doc/master/bundles/FOSRestBundle/index.html
-fos_rest: null
-#    param_fetcher_listener:  true
-#    allowed_methods_listener:  true
-#    routing_loader: true
-#    view:
-#        view_response_listener:  true
-#    exception:
-#        codes:
-#            App\Exception\MyException: 403
-#        messages:
-#            App\Exception\MyException: Forbidden area.
-#    format_listener:
-#        rules:
-#            - { path: ^/api, prefer_extension: true, fallback_format: json, priorities: [ json, html ] }
+fos_rest:
+    access_denied_listener:
+        enabled: true
+    serializer:
+        version:              null
+        groups:               [Default]
+        serialize_null:       false
+    view:
+        view_response_listener: force
+        formats:
+            json: true
+        templating_formats:
+            html: true
+        mime_types:
+            json: ['application/json', 'application/json;version=1.0', 'application/json;version=1.1']
+            jpg: ['image/jpeg']
+            png: ['image/png']
+    exception:
+        enabled: true
+        exception_controller: 'fos_rest.exception.controller:showAction'
+    body_listener: true
+    param_fetcher_listener: true
+    allowed_methods_listener: true
+    routing_loader: true
+    format_listener:
+        enabled: true
+        rules:
+            - { path: ^/api, priorities: ['json'], fallback_format: json, prefer_extension: false }
+            - { path: ^/, priorities: ['html'], fallback_format: 'html', prefer_extension: false }
