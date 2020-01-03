@@ -8,6 +8,7 @@
         "friendsofsymfony/rest-bundle": "^2.6",
         "jms/serializer-bundle": "^3.5",
         "kreait/firebase-php": "^4.38",
+        "league/fractal": "^0.18.0",
         "nelmio/api-doc-bundle": "^3.5",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/asset": "4.4.*",

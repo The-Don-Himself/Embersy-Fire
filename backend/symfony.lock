@@ -221,6 +221,9 @@
     "league/flysystem": {
         "version": "1.0.62"
     },
+    "league/fractal": {
+        "version": "0.18.0"
+    },
     "monolog/monolog": {
         "version": "1.25.3"
     },
