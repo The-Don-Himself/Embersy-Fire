@@ -1,16 +1,44 @@
 framework:
     secret: '%env(APP_SECRET)%'
-    #csrf_protection: true
-    #http_method_override: true
+    http_method_override: true
+    ide:                  ~
+    test:                 ~
+    default_locale:       en
 
-    # Enables session support. Note that the session will ONLY be started if you read or write from it.
-    # Remove or comment this section to explicitly disable session support.
+    # csrf configuration
+    csrf_protection:
+        enabled:              false
+
+    # form configuration
+    form:
+        enabled:              true
+
+    # esi configuration
+    esi:
+        enabled:              false
+
+    # fragments configuration
+    fragments:
+        enabled:              false
+
+    # session configuration
     session:
-        handler_id: null
-        cookie_secure: auto
-        cookie_samesite: lax
+        enabled:              false
 
-    #esi: true
-    #fragments: true
+    # serializer configuration
+    serializer:
+       enabled: false
+
+    # templating configuration
+    templating:
+        engines: 
+            - twig
+
+    # translator configuration
+    translator:
+        enabled:              false
+
+    # PHP errors handling configuration
     php_errors:
-        log: true
+        log:                  false
+        throw:                '%kernel.debug%'
