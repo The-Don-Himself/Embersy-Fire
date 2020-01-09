@@ -11,6 +11,10 @@ use App\Services\ProfileCreateAvatar;
 use App\Services\UserCheck;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\DNSCheckValidation;
+use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
+use Egulias\EmailValidator\Validation\RFCValidation;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations\View as ViewAnnotation;
 use FOS\RestBundle\View\View;
@@ -107,34 +111,6 @@ class AccountsController extends AbstractFOSRestController
         }
 
         $view->setStatusCode(Response::HTTP_OK);
-
-        return $view;
-    }
-
-    /**
-     * @Route("", name="account_new", methods={"POST"})
-     * @Cache(public=false, maxage="0", smaxage="0")
-     */
-    public function accounts_newAction(
-        AccountKit $accountKit,
-        Authentication $authentication,
-        Request $request,
-        SerializerInterface $serializer
-    ) {
-        $profile = $accountKit->profileCreate($request);
-
-        $uid = $profile->getFirebaseId();
-        $user_id = $profile->getId();
-
-        $firebase_token = $authentication->createCustomToken($uid);
-
-        $data = array();
-        $data['user_id'] = $user_id;
-        $data['firebase_token'] = $firebase_token;
-
-        $view = View::create();
-        $view->setData($data);
-        $view->setStatusCode(Response::HTTP_CREATED);
 
         return $view;
     }
