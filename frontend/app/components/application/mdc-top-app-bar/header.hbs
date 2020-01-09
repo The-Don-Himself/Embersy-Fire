@@ -1,0 +1,76 @@
+<div 
+  class="mdc-top-app-bar mdc-top-app-bar--fixed"
+  {{did-insert this.setScrollTarget}}
+  >
+  <div class="mdc-top-app-bar__row" style="z-index: 2">
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start mdc-top-app-bar__section--shrink-to-fit hide-phone">
+      <a href="#" class="drawer-menu material-icons mdc-top-app-bar__navigation-icon color-text--white">menu</a>
+      {{link-to 'EmberSy Fire' 'index' class='mdc-top-app-bar__title color-text--white'}}
+    </section>
+
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start mdc-top-app-bar__section--shrink-to-fit hide-desktop hide-tablet">
+      <a href="#" class="drawer-menu material-icons mdc-top-app-bar__navigation-icon color-text--white">menu</a>
+      {{#link-to 'index' class='color-text--white padding-left-20'}}
+        <i class="material-icons vertical-middle">home</i>
+      {{/link-to}}
+    </section>
+
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__section--shrink-to-fit hide-phone hide-tablet centrify" style="min-width: 250px">
+
+      {{#if @fastboot.isFastBoot}}
+
+      {{else}}
+       {{#if @session.isAuthenticated}}
+        {{#if @session.profile}}
+
+        {{/if}}
+       {{else}}
+
+       {{/if}}
+      {{/if}}
+
+    </section>
+
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="max-width: 70px">
+     {{#if @fastboot.isFastBoot}}
+
+     {{else}}
+      {{#if @session.isAuthenticated}}
+       {{#if @session.profile}}
+
+       {{/if}}
+      {{else}}
+
+      {{/if}}
+     {{/if}}
+    </section>
+  </div>
+
+  <div class="mdc-top-app-bar__row hide-desktop">
+    <section class="mdc-top-app-bar__section centrify">
+
+     {{#if @fastboot.isFastBoot}}
+
+     {{else}}
+      {{#if @session.isAuthenticated}}
+       {{#if @session.profile}}
+
+       {{/if}}
+      {{else}}
+
+
+       <div class="hide-tablet">
+        <button type="button" class="mdc-button mdc-button--outlined button-white-theme" {{ action "modalLogin" on="click"}}>
+         <i class="material-icons vertical-middle">lock</i> Login
+        </button>
+        <button type="button" class="mdc-button mdc-button--outlined button-white-theme" {{ action "modalLogin" on="click"}}>
+         <i class="material-icons vertical-middle">person_add</i> Sign Up
+        </button>
+       </div>
+
+      {{/if}}
+     {{/if}}
+
+    </section>
+  </div>
+</div>

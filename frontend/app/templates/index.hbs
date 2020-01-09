@@ -1,0 +1,80 @@
+{{#if @fastboot.isFastBoot}}
+  <h1 class="hidden">
+    Welcome to EmberSy Fire
+  </h1>
+
+{{else}}
+  {{#if @session.isAuthenticated}}
+    {{#if @session.profile}}
+
+      <div class="mdc-layout-grid">
+
+        <div class="mdc-layout-grid__inner">
+          <div class="
+            mdc-layout-grid__cell 
+            mdc-layout-grid__cell--span-3-desktop 
+            mdc-layout-grid__cell--span-1-tablet 
+            mdc-layout-grid__cell--span-4-phone">
+          </div>
+
+          <div class="
+            mdc-layout-grid__cell 
+            mdc-layout-grid__cell--span-6-desktop 
+            mdc-layout-grid__cell--span-6-tablet 
+            mdc-layout-grid__cell--span-4-phone">
+
+          </div>
+
+          <div class="
+            mdc-layout-grid__cell 
+            mdc-layout-grid__cell--span-3-desktop 
+            mdc-layout-grid__cell--span-1-tablet 
+            mdc-layout-grid__cell--span-4-phone">
+          </div>
+        </div>
+
+      </div>
+
+      <br>
+      
+      <hr class="line">
+      
+      <br>
+
+    {{/if}}
+    <br>
+    <br class="hide-phone">
+
+    <div class="mdc-layout-grid">
+
+      <div class="mdc-layout-grid__inner">
+        <div class="
+          mdc-layout-grid__cell 
+          mdc-layout-grid__cell--span-3-desktop 
+          mdc-layout-grid__cell--span-1-tablet 
+          mdc-layout-grid__cell--span-4-phone">
+        </div>
+
+        <div class="
+          mdc-layout-grid__cell 
+          mdc-layout-grid__cell--span-6-desktop 
+          mdc-layout-grid__cell--span-6-tablet 
+          mdc-layout-grid__cell--span-4-phone">
+
+        </div>
+
+        <div class="
+          mdc-layout-grid__cell 
+          mdc-layout-grid__cell--span-3-desktop 
+          mdc-layout-grid__cell--span-1-tablet 
+          mdc-layout-grid__cell--span-4-phone">
+        </div>
+      </div>
+
+    </div>
+    <br>
+    <br>
+  {{else}}
+
+  {{/if}}
+{{/if}}

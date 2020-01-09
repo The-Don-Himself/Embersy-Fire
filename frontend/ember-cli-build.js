@@ -9,7 +9,8 @@ module.exports = function(defaults) {
     storeConfigInMeta: false,
     'ember-service-worker': {
       versionStrategy: 'project-version',
-      registrationStrategy: 'inline'
+      registrationStrategy: 'inline',
+      enabled: false
     },
     'esw-index': {
       // Where the location of your index file is at, defaults to `index.html`
@@ -120,6 +121,7 @@ module.exports = function(defaults) {
     }
   });
 
+  app.import('node_modules/normalize.css/normalize.css');
   app.import('vendor/material/material_fonts.css');
 
   app.import('node_modules/material-components-web/dist/material-components-web.js', {

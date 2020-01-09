@@ -1,0 +1,97 @@
+<aside 
+   class="mdc-drawer mdc-drawer--modal app-drawer"
+   {{did-insert this.setMDCDrawer}}
+>
+{{#if @fastboot.isFastBoot}}
+  Loading...
+{{else}}
+ {{#if @session.isAuthenticated}}
+   {{#if @session.profile}}
+    <div>
+      <ul class="mdc-image-list mdc-image-list--with-text-protection" style="display: block">
+        <li class="mdc-image-list__item">
+          <div class="mdc-image-list__image-aspect-container">
+            <img class="mdc-image-list__image" src={{ concat "/users/" session.user_id "/v" session.profile.avatarversion "/avatar.jpeg" }} alt="Avatar">
+          </div>
+          <div class="mdc-image-list__supporting">
+
+              <span class="vertical-middle color-text--white">
+                <i class="material-icons" style="vertical-align:super">@</i>
+              </span>
+              <span class="vertical-middle color-text--white">{{ @session.profile.username }}</span>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+     <div class="mdc-drawer__content">
+       <nav class="mdc-list-group">
+         <div class="mdc-list">
+
+         </div>
+
+         <hr class="line">
+
+         <div id="icon-with-text-demo" class="mdc-list">
+            <li class="mdc-list-item">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">people</i>Colleagues
+            </li>
+            <li class="mdc-list-item">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">forum</i>Messages
+            </li>
+            <li class="mdc-list-item">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">group_add</i>My Companies
+            </li>
+            <li class="mdc-list-item">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">card_giftcard</i>Deals
+            </li>
+         </div>
+
+         <hr class="line">
+
+       </nav>
+     </div>
+   {{/if}}
+ {{else}}
+  <div class="mdc-drawer__content">
+    <div class="mdc-layout-grid modal-mdc-layout-grid">
+
+     <div class="mdc-layout-grid__inner" style="grid-gap: 0">
+      <div class="
+       mdc-layout-grid__cell 
+       mdc-layout-grid__cell--span-1-desktop 
+       mdc-layout-grid__cell--span-1-tablet 
+       mdc-layout-grid__cell--span-4-phone">
+      </div>
+
+      <div class="
+       mdc-layout-grid__cell 
+       mdc-layout-grid__cell--span-10-desktop 
+       mdc-layout-grid__cell--span-6-tablet 
+       mdc-layout-grid__cell--span-4-phone">
+
+       <div class="mdc-typography--headline4">
+        Register
+       </div>
+       <hr class="line">
+
+       <br>
+
+       <hr class="line">
+
+       application/form/sign-up-form
+
+      </div>
+
+      <div class="
+        mdc-layout-grid__cell 
+        mdc-layout-grid__cell--span-1-desktop 
+        mdc-layout-grid__cell--span-1-tablet 
+        mdc-layout-grid__cell--span-4-phone">
+      </div>
+     </div>
+    </div>
+  </div>
+ {{/if}}
+{{/if}}
+</aside>
