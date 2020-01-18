@@ -1,1 +1,37 @@
-{{yield}}
+<div id="dialog"
+  class="mdc-dialog"
+  role="alertdialog"
+  aria-hidden="true"
+  aria-labelledby="dialog-title"
+  aria-describedby="dialog-content"
+  {{did-insert this.setMDCDialog}}
+  >
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <h2 class="mdc-dialog__title" id="my-dialog-title">
+        {{if modalDialog.search "Quick Search" }}
+        {{if modalDialog.login "Please Login or Register" }}
+        {{if modalDialog.firebaseAuth "Social Login" }}
+        {{if modalDialog.custom modalDialog.custom.title }}
+      </h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+
+       {{#if modalDialog.login}}
+
+       {{/if}}
+
+       {{#if modalDialog.firebaseAuth}}
+         <div id="firebaseui-auth-container"></div>
+       {{/if}}
+
+       {{#if modalDialog.custom}}
+         {{ modalDialog.custom.content }}
+       {{/if}}
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">Close</button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>

@@ -1,0 +1,27 @@
+<form {{action 'sendSignInLinkToEmail' on='submit'}} class="{{@form-class}}" {{did-insert this.setMDCTextField}}>
+  <!-- Email -->
+  <div style="{{@form-div-style}}" class="mdc-text-field mdc-text-field--box mdc-text-field--dense email">
+    {{ input type="text" name="login[email]" class="mdc-text-field__input" placeholder="Email" required=true minlength=3 value=email }}
+    <div class="mdc-line-ripple"></div>
+  </div>
+
+  {{#unless @signup-button}}
+    <br>
+    <br>
+  {{/unless}}
+
+  <div style="{{@form-buttons-div-style}}">
+    {{#if processing}}
+      {{ application/mdc-linear-progress/indeterminate }}
+    {{else}}
+      <button type="submit" class="mdc-button mdc-button--raised mdc-theme--primary-dark-bg">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label">Login</span>
+      </button>
+    {{/if}}
+
+    {{#if @signup-button}}
+      {{link-to 'Sign Up' 'sign-up' class='mdc-button mdc-button--raised mdc-theme--primary-dark-bg'}}
+    {{/if}}
+  </div>
+</form>

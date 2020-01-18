@@ -1,4 +1,4 @@
-<div 
+<header
   class="mdc-top-app-bar mdc-top-app-bar--fixed"
   {{did-insert this.setScrollTarget}}
   >
@@ -15,17 +15,17 @@
       {{/link-to}}
     </section>
 
-    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__section--shrink-to-fit hide-phone hide-tablet centrify" style="min-width: 250px">
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__section--shrink-to-fit hide-phone hide-tablet" style="min-width: 250px">
 
       {{#if @fastboot.isFastBoot}}
 
       {{else}}
        {{#if @session.isAuthenticated}}
         {{#if @session.profile}}
-
+          {{ application/profile/top-app-bar }}
         {{/if}}
        {{else}}
-
+          {{ application/form/login form-class="hide-phone hide-tablet" form-div-style="vertical-align: middle" form-buttons-div-style="display:inline-block;vertical-align:middle;" signup-button=true }}
        {{/if}}
       {{/if}}
 
@@ -37,10 +37,10 @@
      {{else}}
       {{#if @session.isAuthenticated}}
        {{#if @session.profile}}
-
+        {{ application/mdc-menu/top-app-bar }}
        {{/if}}
       {{else}}
-
+        {{ application/mdc-menu/top-app-bar }}
       {{/if}}
      {{/if}}
     </section>
@@ -54,23 +54,23 @@
      {{else}}
       {{#if @session.isAuthenticated}}
        {{#if @session.profile}}
-
+        {{ application/profile/top-app-bar }}
        {{/if}}
       {{else}}
+        {{ application/form/login form-class="hide-phone" form-div-style="vertical-align: middle" form-buttons-div-style="display:inline-block;vertical-align:middle;" signup-button=true }}
 
-
-       <div class="hide-tablet">
-        <button type="button" class="mdc-button mdc-button--outlined button-white-theme" {{ action "modalLogin" on="click"}}>
-         <i class="material-icons vertical-middle">lock</i> Login
-        </button>
-        <button type="button" class="mdc-button mdc-button--outlined button-white-theme" {{ action "modalLogin" on="click"}}>
-         <i class="material-icons vertical-middle">person_add</i> Sign Up
-        </button>
-       </div>
+        <div class="hide-tablet">
+         <button type="button" class="mdc-button mdc-button--outlined button-white-theme" {{ action "modalLogin" on="click"}}>
+          <i class="material-icons vertical-middle">lock</i> Login
+         </button>
+         <button type="button" class="mdc-button mdc-button--outlined button-white-theme" {{ action "modalLogin" on="click"}}>
+          <i class="material-icons vertical-middle">person_add</i> Sign Up
+         </button>
+        </div>
 
       {{/if}}
      {{/if}}
 
     </section>
   </div>
-</div>
+</header>

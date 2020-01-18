@@ -131,6 +131,43 @@ export default class FirebaseAuthService extends Service {
     }
   }
 
+  sendSignInLinkToEmail(email) {
+    let service = this;
+
+    let systemMessages = get(service, 'systemMessages');
+    let modalDialog = get(service, 'modalDialog');
+
+    let actionCodeSettings = {
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be whitelisted in the Firebase Console.
+      url: window.location.href,
+      // This must be true.
+      handleCodeInApp: true
+      // iOS: {
+      //   bundleId: 'com.example.ios'
+      // },
+      // android: {
+      //  packageName: 'com.example.app',
+      //  installApp: true
+      // }
+    };
+
+    return firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+      .then(function() {
+        // The link was successfully sent. Inform the user.
+        // Save the email locally so you don't need to ask the user for it again
+        // if they open the link on the same device.
+        window.localStorage.setItem('emailForSignIn', email);
+
+        modalDialog.closeDialog();
+        systemMessages.show('We\'ve sent an email to you, please open it and click on the link to complete login');
+      })
+      .catch(function(error) {
+        // Some error occurred, you can inspect the code: error.code
+        systemMessages.show('An Error Occurred With Code : ' + error.code + ' . Please Try Again Later');
+      });
+  }
+
   signInWithEmailLink(email) {
     let service = this;
 
@@ -143,15 +180,6 @@ export default class FirebaseAuthService extends Service {
         window.localStorage.removeItem('emailForSignIn');
 
         systemMessages.show("Login Successfully Completed!");
-
-        PNotify.desktop.permission();
-        metrics.trackEvent({
-          category: 'authentication',
-          action: 'login-success',
-          label: 'login-success',
-          value: window.document.location.href,
-          noninteraction: false
-        });
       })
       .catch(function(error) {
         systemMessages.show('An Authentication Error Occurred With Code : ' + error.code + ' . Please Try Login Again Later');

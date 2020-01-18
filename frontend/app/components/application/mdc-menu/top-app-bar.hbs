@@ -1,0 +1,46 @@
+<div class="mdc-menu-surface--anchor" {{did-insert this.setMDCMenu}}>
+  {{#if @session.isAuthenticated}}
+   {{#if @session.profile}}
+    <a href="javascript:void(0)" class="material-icons mdc-toolbar__icon toggle" aria-label="User Menu" alt="User Menu">
+     <img class="user_thumb profile_thumb" width="40" height="40" src="/users/{{@session.user_id}}/v{{@sessionAccount.profile.avatarversion}}/thumb.jpeg" alt="Avatar" />
+    </a>
+
+    <div class="mdc-menu mdc-menu-surface" tabindex="-1" id="toolbar-menu">
+     <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true" style="transform: scale(1, 1);">
+      {{#link-to 'profile'}}
+       <li class="mdc-list-item" role="menuitem" tabindex="0" style="transition-delay: 0.1s;">
+        <i class="material-icons mdc-list-item__graphic color-text--cyan">account_box</i> My Profile
+       </li>
+      {{/link-to}}
+
+      <li class="line" role="separator"></li>
+      <a href="javascript:void(0)" {{action 'invalidateSession' on='click'}}>
+       <li class="mdc-list-item" role="menuitem" tabindex="0" style="transition-delay: 1.0s;">
+        <i class="material-icons mdc-list-item__graphic color-text--pink">exit_to_app</i> Logout
+       </li>
+      </a>
+
+     </ul>
+    </div>
+   {{/if}}
+  {{else}}
+   <a href="javascript:void(0)" class="material-icons mdc-toolbar__icon toggle color-text--white" aria-label="User Menu" alt="User Menu">
+    <i class="material-icons">person_add</i>
+   </a>
+
+   <div class="mdc-menu mdc-menu-surface" tabindex="-1" id="toolbar-menu">
+    <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true" style="transform: scale(1, 1);">
+     {{#link-to 'login'}}
+      <li class="mdc-list-item" role="menuitem" tabindex="0" style="transition-delay: 0.1s;">
+       <i class="material-icons mdc-list-item__graphic color-text--amber">lock</i> Login
+      </li>
+     {{/link-to}}
+     {{#link-to 'sign-up'}}
+      <li class="mdc-list-item" role="menuitem" tabindex="0" style="transition-delay: 0.2s;">
+       <i class="material-icons mdc-list-item__graphic color-text--cyan">person_add</i> Sign Up
+      </li>
+     {{/link-to}}
+    </ul>
+   </div>
+  {{/if}}
+</div>
