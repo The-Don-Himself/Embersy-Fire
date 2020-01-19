@@ -80,9 +80,10 @@ class AccountsController extends AbstractFOSRestController
 
         $manager = new Manager();
         $manager->setSerializer(new CustomSerializer());
-        $resource = new Item($jsonApiObject, new AccountsTransformer(), 'accounts');
+        $resource = new Item($jsonApiObject, new AccountsTransformer(), 'account');
         $array = $manager->createData($resource)->toArray();
-        $array['meta'] = $meta;
+        $array['meta'] = (object)$meta;
+        // $meta ? $array['meta'] = (object)$meta : null;
 
         $view = View::create();
         $view->setData($array);

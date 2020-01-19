@@ -2,11 +2,11 @@
    class="mdc-drawer mdc-drawer--modal app-drawer"
    {{did-insert this.setMDCDrawer}}
 >
-{{#if @fastboot.isFastBoot}}
+{{#if fastboot.isFastBoot}}
   Loading...
 {{else}}
- {{#if @session.isAuthenticated}}
-   {{#if @session.profile}}
+ {{#if session.isAuthenticated}}
+   {{#if session.profile}}
     <div>
       <ul class="mdc-image-list mdc-image-list--with-text-protection" style="display: block">
         <li class="mdc-image-list__item">
@@ -18,39 +18,35 @@
               <span class="vertical-middle color-text--white">
                 <i class="material-icons" style="vertical-align:super">@</i>
               </span>
-              <span class="vertical-middle color-text--white">{{ @session.profile.username }}</span>
+              <span class="vertical-middle color-text--white">{{ session.profile.username }}</span>
 
           </div>
         </li>
       </ul>
     </div>
-     <div class="mdc-drawer__content">
-       <nav class="mdc-list-group">
-         <div class="mdc-list">
 
-         </div>
+    <div class="mdc-drawer__content">
+      <nav class="mdc-list">
+        {{#link-to 'index' class='mdc-list-item' }}
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
+          <span class="mdc-list-item__text">Home</span>
+        {{/link-to}}
 
-         <hr class="line">
+        <hr class="mdc-list-divider">
+        <h6 class="mdc-list-group__subheader">Profile</h6>
 
-         <div id="icon-with-text-demo" class="mdc-list">
-            <li class="mdc-list-item">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">people</i>Colleagues
-            </li>
-            <li class="mdc-list-item">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">forum</i>Messages
-            </li>
-            <li class="mdc-list-item">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">group_add</i>My Companies
-            </li>
-            <li class="mdc-list-item">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">card_giftcard</i>Deals
-            </li>
-         </div>
+        <li class="mdc-list-item">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">forum</i>Messages
+        </li>
+        <li class="mdc-list-item">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">group_add</i>My Companies
+        </li>
+        <li class="mdc-list-item">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">card_giftcard</i>Deals
+        </li>
+      </nav>
+    </div>
 
-         <hr class="line">
-
-       </nav>
-     </div>
    {{/if}}
  {{else}}
   <div class="mdc-drawer__content">

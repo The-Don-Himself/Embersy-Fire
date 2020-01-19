@@ -15,6 +15,8 @@ export default class AccountModel extends Model {
   })
   country;
   @attr('string') bio;
+
+  @attr('string') token;
   @attr('string') gender;
   @attr('date') birthday;
 }

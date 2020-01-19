@@ -97,7 +97,8 @@ export default class SessionService extends Service {
       });
     }
 
-    return store.queryRecord('account', {})
+    return store.findRecord('account', 'me')
+    //return store.queryRecord('account', {})
     .then(function(account) {
       set(service, 'profile' , account);
 
@@ -105,14 +106,15 @@ export default class SessionService extends Service {
       if(firebase_token){
         console.log('signInWithCustomToken');
         return session.signInWithCustomToken(firebase_token).then(function() {
-    			return store.queryRecord('account', {})
+          return store.findRecord('account', 'me')
+          //return store.queryRecord('account', {})
     			.then(function(account) {
     				set(service, 'profile' , account);
     				let userId = get(account, 'id');
     				session.setUserId(userId);
     			})
     			.catch(function() {
-    			  console.error('querying accounts record failed, invalidating session');
+    			  console.error('signInWithCustomToken failed, invalidating session');
     			  session.invalidate();
     			});
     		})
@@ -140,10 +142,8 @@ export default class SessionService extends Service {
 
     if (get(session, 'isAuthenticated')) {
       const headers = {};
-      session.authorize('authorizer:oauth2', (headerName, headerValue) => {
-        headers[headerName] = headerValue;
-      });
 
+      headers['X-AUTH-TOKEN'] = session.token;
       headers['Accept'] = 'application/json, text/javascript, */*';
 
       let fetchInit = {

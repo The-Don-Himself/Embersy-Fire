@@ -1,11 +1,11 @@
-{{#if @fastboot.isFastBoot}}
+{{#if fastboot.isFastBoot}}
   <h1 class="hidden">
     Welcome to EmberSy Fire
   </h1>
 
 {{else}}
-  {{#if @session.isAuthenticated}}
-    {{#if @session.profile}}
+  {{#if session.isAuthenticated}}
+    {{#if session.profile}}
 
       <div class="mdc-layout-grid">
 

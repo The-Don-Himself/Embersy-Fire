@@ -14,3 +14,7 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> symfony/framework-bundle ###
+/embersy-fire-dev-firebase-adminsdk-jropn-53a00f2a8d.json
+/embersy-fire-firebase-adminsdk-29shp-49d10a058d.json

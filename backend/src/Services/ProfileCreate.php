@@ -22,6 +22,23 @@ class ProfileCreate
     {
         $em = $this->em;
 
+        $profile = $em
+            ->getRepository(Profiles::class)
+            ->queryProfileByFirebaseId($uid);
+
+        if ($profile) {
+            $user_id = $profile->getId();
+
+            $customAttributes = [
+                'profile_id' => (string) $user_id,
+            ];
+
+            $authentication = $this->authentication;
+            $updatedUser = $authentication->setCustomUserAttributes($uid, $customAttributes);
+
+            return $profile;
+        }
+
         $profile = new Profiles();
         $profile->setFirebaseId($uid);
         $profile->setUsername($username);

@@ -1,7 +1,9 @@
 import Component from '@glimmer/component';
 import { action, get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default class ApplicationMdcMenuTopAppBarComponent extends Component {
+    @service session;
 
     @action
     setMDCMenu(element) {

@@ -17,11 +17,11 @@
 
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__section--shrink-to-fit hide-phone hide-tablet" style="min-width: 250px">
 
-      {{#if @fastboot.isFastBoot}}
+      {{#if fastboot.isFastBoot}}
 
       {{else}}
-       {{#if @session.isAuthenticated}}
-        {{#if @session.profile}}
+       {{#if session.isAuthenticated}}
+        {{#if session.profile}}
           {{ application/profile/top-app-bar }}
         {{/if}}
        {{else}}
@@ -32,11 +32,11 @@
     </section>
 
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="max-width: 70px">
-     {{#if @fastboot.isFastBoot}}
+     {{#if fastboot.isFastBoot}}
 
      {{else}}
-      {{#if @session.isAuthenticated}}
-       {{#if @session.profile}}
+      {{#if session.isAuthenticated}}
+       {{#if session.profile}}
         {{ application/mdc-menu/top-app-bar }}
        {{/if}}
       {{else}}
@@ -49,11 +49,11 @@
   <div class="mdc-top-app-bar__row hide-desktop">
     <section class="mdc-top-app-bar__section centrify">
 
-     {{#if @fastboot.isFastBoot}}
+     {{#if fastboot.isFastBoot}}
 
      {{else}}
-      {{#if @session.isAuthenticated}}
-       {{#if @session.profile}}
+      {{#if session.isAuthenticated}}
+       {{#if session.profile}}
         {{ application/profile/top-app-bar }}
        {{/if}}
       {{else}}

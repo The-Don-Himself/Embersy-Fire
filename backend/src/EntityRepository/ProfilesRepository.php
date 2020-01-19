@@ -24,7 +24,7 @@ class ProfilesRepository extends ServiceEntityRepository
         return $this->findAll();
     }
 
-    public function queryProfileById(int $profile_id): ?Profile
+    public function queryProfileById(int $profile_id): ?Profiles
     {
         return $this->find($profile_id);
     }
@@ -37,7 +37,15 @@ class ProfilesRepository extends ServiceEntityRepository
         return $profiles;
     }
 
-    public function queryProfileByUsername(string $username): ?Profile
+    public function queryProfileByFirebaseId(string $firebase_id): ?Profiles
+    {
+        $profile = $this
+            ->findOneBy(array('firebase_id' => $firebase_id));
+
+        return $profile;
+    }
+
+    public function queryProfileByUsername(string $username): ?Profiles
     {
         $profile = $this
             ->findOneBy(array('username' => $username));

@@ -38,7 +38,10 @@ export default class ApplicationRoute extends Route {
         firebaseAuth.checkIsSignInWithEmailLink();
       }
 
-      // $('#splash-screen').remove();
+      let splash = document.getElementById('splash-screen');
+      if(splash){
+        splash.remove();
+      }
 
     }
   }

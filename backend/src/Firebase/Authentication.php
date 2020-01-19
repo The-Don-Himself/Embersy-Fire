@@ -48,13 +48,7 @@ class Authentication
 
     public function verifiedIdTokenFromRequest(Request $request)
     {
-        $authorization = $request->headers->get('Authorization');
-
-        if (!$authorization) {
-            throw new AccessDeniedHttpException('Authorization Header Is Required'); // 403
-        }
-
-        list($type, $token) = explode(' ', $authorization);
+        $token = $request->headers->get('X-AUTH-TOKEN');
 
         if (!$token) {
             throw new AccessDeniedHttpException('Access Token Is Required'); // 403
@@ -63,7 +57,7 @@ class Authentication
         $firebase = $this->firebase;
 
         try {
-            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token, false, true);
+            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token);
         } catch (ExpiredToken $e) {
             throw new AccessDeniedHttpException($e->getMessage()); // 403
         } catch (IssuedInTheFuture $e) {
@@ -79,13 +73,7 @@ class Authentication
 
     public function userIdFromRequest(Request $request)
     {
-        $authorization = $request->headers->get('Authorization');
-
-        if (!$authorization) {
-            throw new AccessDeniedHttpException('Authorization Header Is Required'); // 403
-        }
-
-        list($type, $token) = explode(' ', $authorization);
+        $token = $request->headers->get('X-AUTH-TOKEN');
 
         if (!$token) {
             throw new AccessDeniedHttpException('Access Token Is Required'); // 403
@@ -94,7 +82,7 @@ class Authentication
         $firebase = $this->firebase;
 
         try {
-            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token, false, true);
+            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token);
         } catch (ExpiredToken $e) {
             throw new AccessDeniedHttpException($e->getMessage()); // 403
         } catch (IssuedInTheFuture $e) {
@@ -116,13 +104,7 @@ class Authentication
 
     public function uidFromRequest(Request $request)
     {
-        $authorization = $request->headers->get('Authorization');
-
-        if (!$authorization) {
-            throw new AccessDeniedHttpException('Authorization Header Is Required'); // 403
-        }
-
-        list($type, $token) = explode(' ', $authorization);
+        $token = $request->headers->get('X-AUTH-TOKEN');
 
         if (!$token) {
             throw new AccessDeniedHttpException('Access Token Is Required'); // 403
@@ -131,7 +113,7 @@ class Authentication
         $firebase = $this->firebase;
 
         try {
-            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token, false, true);
+            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token);
         } catch (ExpiredToken $e) {
             throw new AccessDeniedHttpException($e->getMessage()); // 403
         } catch (IssuedInTheFuture $e) {
@@ -148,7 +130,7 @@ class Authentication
 
     public function checkIfAdminFromRequest(Request $request)
     {
-        list($type, $token) = explode(' ', $request->headers->get('Authorization'));
+        $token = $request->headers->get('X-AUTH-TOKEN');
 
         if (!$token) {
             throw new AccessDeniedHttpException('Access Token Is Required'); // 403
@@ -157,7 +139,7 @@ class Authentication
         $firebase = $this->firebase;
 
         try {
-            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token, false, true);
+            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token);
         } catch (ExpiredToken $e) {
             throw new AccessDeniedHttpException($e->getMessage()); // 403
         } catch (IssuedInTheFuture $e) {
@@ -197,7 +179,7 @@ class Authentication
         $firebase = $this->firebase;
 
         try {
-            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token, false, true);
+            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token);
         } catch (ExpiredToken $e) {
             throw new AccessDeniedHttpException($e->getMessage()); // 403
         } catch (IssuedInTheFuture $e) {

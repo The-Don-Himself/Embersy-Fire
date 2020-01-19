@@ -60,8 +60,15 @@ export default class FirebaseAuthService extends Service {
       signInOptions: [
         {
           provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+
           // Whether the display name should be displayed in the Sign Up page.
-          requireDisplayName: true
+          // requireDisplayName: true
+
+          // Allow the user the ability to complete sign-in cross device,
+          // including the mobile apps specified in the ActionCodeSettings
+          // object below.
+          forceSameDevice: false
         },
         {
           provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
@@ -75,8 +82,8 @@ export default class FirebaseAuthService extends Service {
           defaultNationalNumber: '1234567890'
         }
       ],
-      tosUrl: 'https://interdistalliances.com/terms',
-      privacyPolicyUrl: 'https://interdistalliances.com/privacy'
+      tosUrl: 'https://embersy-fire.appscale.cloud/terms',
+      privacyPolicyUrl: 'https://embersy-fire.appscale.cloud/privacy'
     };
 
     set(service, 'uiConfig', uiConfig);
@@ -98,10 +105,11 @@ export default class FirebaseAuthService extends Service {
     let service = this;
 
     let systemMessages = get(service, 'systemMessages');
-    let modalDialog = get(service, 'modalDialog');
 
     // Confirm the link is a sign-in with email link.
+
     if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+
       // Additional state parameters can also be passed via URL.
       // This can be used to continue the user's intended action before triggering
       // the sign-in operation.
@@ -129,6 +137,7 @@ export default class FirebaseAuthService extends Service {
       }
 
     }
+
   }
 
   sendSignInLinkToEmail(email) {
@@ -172,7 +181,6 @@ export default class FirebaseAuthService extends Service {
     let service = this;
 
     let systemMessages = get(service, 'systemMessages');
-    let metrics = get(service, 'metrics');
 
     // The client SDK will parse the code from the link for you.
     firebase.auth().signInWithEmailLink(email, window.location.href)
@@ -182,6 +190,7 @@ export default class FirebaseAuthService extends Service {
         systemMessages.show("Login Successfully Completed!");
       })
       .catch(function(error) {
+        console.log(error);
         systemMessages.show('An Authentication Error Occurred With Code : ' + error.code + ' . Please Try Login Again Later');
       });
   }
@@ -211,7 +220,7 @@ export default class FirebaseAuthService extends Service {
             }
 
             session.setIsAuthenticated(true);
-
+console.log(session);
             session.loadCurrentUser();
           })
           .catch((error) => {
