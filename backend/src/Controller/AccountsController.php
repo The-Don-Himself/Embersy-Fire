@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Profiles;
 use App\Firebase\Authentication;
 use App\JsonApi\Model\Accounts;
 use App\JsonApi\Serializer\CustomSerializer;
@@ -68,7 +69,7 @@ class AccountsController extends AbstractFOSRestController
         }
 
         $profile = $em
-            ->getRepository('App:Profiles')
+            ->getRepository(Profiles::class)
             ->queryProfileById($user_id);
 
         $profile_array = $serializer->toArray($profile);
@@ -156,7 +157,7 @@ class AccountsController extends AbstractFOSRestController
         imagedestroy($im);
 
         $profile = $em
-            ->getRepository('App:Profiles')
+            ->getRepository(Profiles::class)
             ->queryProfileById($user_id);
 
         $avatar_version = $profile->getAvatarversion();
@@ -217,7 +218,7 @@ class AccountsController extends AbstractFOSRestController
         }
 
         $profile = $em
-            ->getRepository('App:Profiles')
+            ->getRepository(Profiles::class)
             ->queryProfileById($user_id);
 
         $currentUsername = $profile->getUsername();

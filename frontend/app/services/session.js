@@ -98,35 +98,34 @@ export default class SessionService extends Service {
     }
 
     return store.queryRecord('account', {})
-    .then(function(account) { 
+    .then(function(account) {
       set(service, 'profile' , account);
 
       let firebase_token = get(account, 'token');
       if(firebase_token){
         console.log('signInWithCustomToken');
         return session.signInWithCustomToken(firebase_token).then(function() {
-			return store.queryRecord('account', {})
-			.then(function(account) { 
-				set(service, 'profile' , account);
-				let userId = get(account, 'id');
-				session.setUserId(userId);
-			})
-			.catch(function() { 
-			  console.error('querying accounts record failed, invalidating session');
-			  session.invalidate();
-			});
-		})
-		.catch(function() { 
-		  console.error('querying accounts record failed, invalidating session');
-		  session.invalidate();
-		});
+    			return store.queryRecord('account', {})
+    			.then(function(account) {
+    				set(service, 'profile' , account);
+    				let userId = get(account, 'id');
+    				session.setUserId(userId);
+    			})
+    			.catch(function() {
+    			  console.error('querying accounts record failed, invalidating session');
+    			  session.invalidate();
+    			});
+    		})
+    		.catch(function() {
+    		  console.error('querying accounts record failed, invalidating session');
+    		  session.invalidate();
+    		});
       } else {
-		let userId = get(account, 'id');
-
-	  }
+	      let userId = get(account, 'id');
+      }
 
     })
-    .catch(function() { 
+    .catch(function() {
       console.error('querying accounts record failed, invalidating session');
       session.invalidate();
     });
@@ -154,7 +153,7 @@ export default class SessionService extends Service {
       };
 
       fetch(ENV.apiUrl + '/api/accounts/logout' , fetchInit)
-      .then(function(){ 
+      .then(function(){
 
       });
     }

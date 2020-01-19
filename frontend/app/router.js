@@ -49,4 +49,9 @@ Router.map(function() {
   this.route('sign-up');
   this.route('profile');
   this.route('login');
+  this.route('users', function() {
+    this.route('show', { path: '/:user_id' });
+  });
+  this.route('server-error');
+  this.route('page-not-found', { path: '/*wildcard' });
 });

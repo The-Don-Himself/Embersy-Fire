@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Profiles as Profile;
 use App\JsonApi\Model\Profiles;
 use App\JsonApi\Serializer\CustomSerializer;
 use App\JsonApi\Transformer\ProfilesTransformer;
