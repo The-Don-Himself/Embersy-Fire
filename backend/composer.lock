@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7cbfd288ac30bfbde4c0105008cdac15",
+    "content-hash": "6906c6da726413a62e68e7c96488de9e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1342,26 +1342,32 @@
         },
         {
             "name": "friendsofsymfony/rest-bundle",
-            "version": "dev-error_listener",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/yceruto/FOSRestBundle.git",
-                "reference": "a0730cf5f5b62afedd047cfe27132cb73ef2f0d8"
+                "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
+                "reference": "ddc3fd342b6a79013286f388bac7ed447ba241d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/ddc3fd342b6a79013286f388bac7ed447ba241d7",
+                "reference": "ddc3fd342b6a79013286f388bac7ed447ba241d7",
+                "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "^1.0",
                 "php": "^7.1",
                 "psr/log": "^1.0",
-                "symfony/config": "^3.4|^4.3|^5.0",
-                "symfony/debug": "^3.4|^4.3|^5.0",
-                "symfony/dependency-injection": "^3.4|^4.3|^5.0",
-                "symfony/event-dispatcher": "^3.4|^4.3|^5.0",
-                "symfony/finder": "^3.4|^4.3|^5.0",
-                "symfony/framework-bundle": "^3.4|^4.3|^5.0",
-                "symfony/http-foundation": "^3.4|^4.3|^5.0",
-                "symfony/http-kernel": "^3.4|^4.3|^5.0",
-                "symfony/routing": "^3.4|^4.3|^5.0",
-                "symfony/security-core": "^3.4|^4.3|^5.0",
+                "symfony/config": "^3.4|^4.3",
+                "symfony/debug": "^3.4|^4.3",
+                "symfony/dependency-injection": "^3.4|^4.3",
+                "symfony/event-dispatcher": "^3.4|^4.3",
+                "symfony/finder": "^3.4|^4.3",
+                "symfony/framework-bundle": "^3.4|^4.3",
+                "symfony/http-foundation": "^3.4|^4.3",
+                "symfony/http-kernel": "^3.4|^4.3",
+                "symfony/routing": "^3.4|^4.3",
+                "symfony/security-core": "^3.4|^4.3",
                 "willdurand/jsonp-callback-validator": "^1.0",
                 "willdurand/negotiation": "^2.0"
             },
@@ -1376,19 +1382,19 @@
                 "phpoption/phpoption": "^1.1",
                 "psr/http-message": "^1.0",
                 "sensio/framework-extra-bundle": "^3.0.13|^4.0|^5.0",
-                "symfony/asset": "^3.4|^4.3|^5.0",
-                "symfony/browser-kit": "^3.4|^4.3|^5.0",
-                "symfony/css-selector": "^3.4|^4.3|^5.0",
-                "symfony/expression-language": "^3.4|^4.3|^5.0",
-                "symfony/form": "^3.4|^4.3|^5.0",
+                "symfony/asset": "^3.4|^4.3",
+                "symfony/browser-kit": "^3.4|^4.3",
+                "symfony/css-selector": "^3.4|^4.3",
+                "symfony/expression-language": "^3.4|^4.3",
+                "symfony/form": "^3.4|^4.3",
                 "symfony/phpunit-bridge": "^4.1.8",
-                "symfony/security-bundle": "^3.4|^4.3|^5.0",
-                "symfony/serializer": "^3.4|^4.3|^5.0",
+                "symfony/security-bundle": "^3.4|^4.3",
+                "symfony/serializer": "^3.4|^4.3",
                 "symfony/templating": "^3.4|^4.3",
-                "symfony/twig-bundle": "^3.4|^4.3|^5.0",
-                "symfony/validator": "^3.4|^4.3|^5.0",
-                "symfony/web-profiler-bundle": "^3.4|^4.3|^5.0",
-                "symfony/yaml": "^3.4|^4.3|^5.0"
+                "symfony/twig-bundle": "^3.4|^4.3",
+                "symfony/validator": "^3.4|^4.3",
+                "symfony/web-profiler-bundle": "^3.4|^4.3",
+                "symfony/yaml": "^3.4|^4.3"
             },
             "suggest": {
                 "jms/serializer-bundle": "Add support for advanced serialization capabilities, recommended, requires ^2.0|^3.0",
@@ -1411,6 +1417,7 @@
                     "Tests/"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1433,7 +1440,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2020-01-18T12:57:20+00:00"
+            "time": "2020-01-19T18:33:09+00:00"
         },
         {
             "name": "giggsey/libphonenumber-for-php",
