@@ -1346,12 +1346,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "ddc3fd342b6a79013286f388bac7ed447ba241d7"
+                "reference": "23b1a93760c0ef68b2fb5d0ca531e2cfd0f0eddd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/ddc3fd342b6a79013286f388bac7ed447ba241d7",
-                "reference": "ddc3fd342b6a79013286f388bac7ed447ba241d7",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/23b1a93760c0ef68b2fb5d0ca531e2cfd0f0eddd",
+                "reference": "23b1a93760c0ef68b2fb5d0ca531e2cfd0f0eddd",
                 "shasum": ""
             },
             "require": {
@@ -1377,6 +1377,7 @@
                 "sensio/framework-extra-bundle": "<3.0.13"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
                 "jms/serializer": "^1.13|^2.0",
                 "jms/serializer-bundle": "^2.3.1|^3.0",
                 "phpoption/phpoption": "^1.1",
@@ -1440,7 +1441,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2020-01-19T18:33:09+00:00"
+            "time": "2020-01-20T10:02:49+00:00"
         },
         {
             "name": "giggsey/libphonenumber-for-php",
@@ -4395,16 +4396,16 @@
         },
         {
             "name": "riverline/multipart-parser",
-            "version": "2.0.6",
+            "version": "2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Riverline/multipart-parser.git",
-                "reference": "f71c80281d8f04e840c31edede6516b63f4d699b"
+                "reference": "675d35cb42d2b32c56a8d5ed4dca8331a043cd58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Riverline/multipart-parser/zipball/f71c80281d8f04e840c31edede6516b63f4d699b",
-                "reference": "f71c80281d8f04e840c31edede6516b63f4d699b",
+                "url": "https://api.github.com/repos/Riverline/multipart-parser/zipball/675d35cb42d2b32c56a8d5ed4dca8331a043cd58",
+                "reference": "675d35cb42d2b32c56a8d5ed4dca8331a043cd58",
                 "shasum": ""
             },
             "require": {
@@ -4412,10 +4413,10 @@
                 "php": ">=5.6.0"
             },
             "require-dev": {
+                "laminas/laminas-diactoros": "^1.8.7",
                 "phpunit/phpunit": "^5.2 || ^6.0 || ^7.0",
                 "psr/http-message": "^1.0",
-                "symfony/psr-http-message-bridge": "^1.1",
-                "zendframework/zend-diactoros": "^1.0"
+                "symfony/psr-http-message-bridge": "^1.1"
             },
             "type": "library",
             "autoload": {
@@ -4443,7 +4444,7 @@
                 "multipart",
                 "parser"
             ],
-            "time": "2019-12-16T11:23:08+00:00"
+            "time": "2020-01-20T15:25:10+00:00"
         },
         {
             "name": "rize/uri-template",
