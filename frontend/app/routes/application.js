@@ -8,6 +8,8 @@ export default class ApplicationRoute extends Route {
   @service('store') store;
   @service location;
   @service firebaseAuth;
+  @service session;
+  @service fastboot;
 
   beforeModel() {
     let isFastBoot = get(this, 'fastboot.isFastBoot');

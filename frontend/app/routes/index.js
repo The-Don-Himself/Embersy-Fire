@@ -1,7 +1,11 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import { get, set } from '@ember/object';
 
 export default class IndexRoute extends Route {
+
+  @service session;
+  @service fastboot;
 
   titleToken = function() {
     let isFastBoot = get(this, 'fastboot.isFastBoot');

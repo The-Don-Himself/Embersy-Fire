@@ -11,7 +11,7 @@
       <ul class="mdc-image-list mdc-image-list--with-text-protection" style="display: block">
         <li class="mdc-image-list__item">
           <div class="mdc-image-list__image-aspect-container">
-            <img class="mdc-image-list__image" src={{ concat "/users/" session.user_id "/v" session.profile.avatarversion "/avatar.jpeg" }} alt="Avatar">
+            <img class="mdc-image-list__image" src={{ concat (assets-base-url) "/users/" session.user_id "/v" session.profile.avatarversion "/avatar.jpeg" }} alt="Avatar">
           </div>
           <div class="mdc-image-list__supporting">
 
@@ -39,7 +39,7 @@
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">forum</i>Messages
         </li>
         <li class="mdc-list-item">
-            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">group_add</i>My Companies
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">group_add</i>My Friends
         </li>
         <li class="mdc-list-item">
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">card_giftcard</i>Deals
@@ -66,18 +66,25 @@
        mdc-layout-grid__cell--span-6-tablet
        mdc-layout-grid__cell--span-4-phone">
 
-       <div class="mdc-typography--headline4">
-        Sign Up
-       </div>
-       <hr class="line">
+       <div class="mdc-typography--headline5">Email Login</div>
 
+       <br>
+       <br>
+
+       {{ application/form/login }}
+
+       <br>
        <br>
 
        <hr class="line">
 
-       {{ application/form/login }}
+       <br>
+       <br>
 
-       <hr class="line">
+       <div class="mdc-typography--headline5">Social Login</div>
+
+       <br>
+       <br>
 
        {{ application/form/sign-up }}
 
