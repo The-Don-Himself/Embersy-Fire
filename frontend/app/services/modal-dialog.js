@@ -50,4 +50,4 @@ export default class ModalDialogService extends Service {
     }
   }
 
-};
+}

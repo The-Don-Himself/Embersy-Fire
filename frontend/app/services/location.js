@@ -113,4 +113,4 @@ export default class LocationService extends Service {
       })
   }
 
-};
+}

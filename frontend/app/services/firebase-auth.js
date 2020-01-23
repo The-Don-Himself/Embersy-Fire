@@ -190,7 +190,6 @@ export default class FirebaseAuthService extends Service {
         systemMessages.show("Login Successfully Completed!");
       })
       .catch(function(error) {
-        console.log(error);
         systemMessages.show('An Authentication Error Occurred With Code : ' + error.code + ' . Please Try Login Again Later');
       });
   }
@@ -220,7 +219,6 @@ export default class FirebaseAuthService extends Service {
             }
 
             session.setIsAuthenticated(true);
-console.log(session);
             session.loadCurrentUser();
           })
           .catch((error) => {
@@ -246,4 +244,4 @@ console.log(session);
     });
   }
 
-};
+}

@@ -159,4 +159,4 @@ export default class SessionService extends Service {
     }
   }
 
-};
+}
