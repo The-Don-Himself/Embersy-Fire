@@ -1,9 +1,8 @@
-{{ head-layout }}
-{{ application/mdc-drawer/modal-drawer }}
+<HeadLayout />
+<Application::MdcDrawer::ModalDrawer />
 <div class="mdc-drawer-scrim"></div>
 <div class="app-content" id="app-content">
-  {{ application/mdc-top-app-bar/header }}
-
+  <Application::MdcTopAppBar::Header />
   <main id="app-main" class="app-main z-index-2">
     <div class="mdc-top-app-bar--fixed-adjust"></div>
     <div class="mdc-top-app-bar--fixed-adjust hide-desktop"></div>
@@ -11,6 +10,6 @@
     {{ outlet }}
   </main>
 
-  {{ application/footer/mdl-mega-footer }}
+  <Application::Footer::MdlMegaFooter />
 </div>
-{{ application/mdc-dialog/simple-dialog }}
+<Application::MdcDialog::SimpleDialog />
