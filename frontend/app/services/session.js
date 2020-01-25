@@ -97,8 +97,7 @@ export default class SessionService extends Service {
       });
     }
 
-    return store.findRecord('account', 'me')
-    //return store.queryRecord('account', {})
+    return store.queryRecord('account', {})
     .then(function(account) {
       set(service, 'profile' , account);
 
@@ -106,8 +105,7 @@ export default class SessionService extends Service {
       if(firebase_token){
         console.log('signInWithCustomToken');
         return session.signInWithCustomToken(firebase_token).then(function() {
-          return store.findRecord('account', 'me')
-          //return store.queryRecord('account', {})
+          return store.queryRecord('account', {})
     			.then(function(account) {
     				set(service, 'profile' , account);
     				let userId = get(account, 'id');

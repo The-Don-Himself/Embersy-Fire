@@ -2,7 +2,11 @@
   {{#if session.isAuthenticated}}
    {{#if session.profile}}
     <a href="javascript:void(0)" class="material-icons mdc-toolbar__icon toggle" aria-label="User Menu" alt="User Menu">
-     <img class="user_thumb profile_thumb" width="40" height="40" src="{{ assets-base-url }}/users/{{ session.user_id }}/v{{ session.profile.avatarversion }}/thumb.jpeg" alt="Avatar" />
+      {{#if session.profile.avatarversion}}
+        <img class="user_thumb profile_thumb" width="40" height="40" src="{{ assets-base-url }}/users/{{ session.user_id }}/v{{ session.profile.avatarversion }}/thumb.jpeg" alt="Avatar" />
+      {{else}}
+        <img class="user_thumb profile_thumb" width="40" height="40" src={{ concat (assets-base-url) "/avatar-default.png" }} alt="Avatar">
+      {{/if}}
     </a>
 
     <div class="mdc-menu mdc-menu-surface" tabindex="-1" id="toolbar-menu">

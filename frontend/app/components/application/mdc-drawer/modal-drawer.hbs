@@ -11,7 +11,11 @@
       <ul class="mdc-image-list mdc-image-list--with-text-protection" style="display: block">
         <li class="mdc-image-list__item">
           <div class="mdc-image-list__image-aspect-container">
-            <img class="mdc-image-list__image" src={{ concat (assets-base-url) "/users/" session.user_id "/v" session.profile.avatarversion "/avatar.jpeg" }} alt="Avatar">
+            {{#if session.profile.avatarversion}}
+              <img class="mdc-image-list__image" src={{ concat (assets-base-url) "/users/" session.user_id "/v" session.profile.avatarversion "/avatar.jpeg" }} alt="Avatar">
+            {{else}}
+              <img class="mdc-image-list__image" src={{ concat (assets-base-url) "/avatar-default.png" }} alt="Avatar">
+            {{/if}}
           </div>
           <div class="mdc-image-list__supporting">
 

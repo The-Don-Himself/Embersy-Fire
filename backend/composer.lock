@@ -4397,16 +4397,16 @@
         },
         {
             "name": "riverline/multipart-parser",
-            "version": "2.0.7",
+            "version": "2.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Riverline/multipart-parser.git",
-                "reference": "675d35cb42d2b32c56a8d5ed4dca8331a043cd58"
+                "reference": "2fe9026789754c1ff07c06047f0acc113e90933a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Riverline/multipart-parser/zipball/675d35cb42d2b32c56a8d5ed4dca8331a043cd58",
-                "reference": "675d35cb42d2b32c56a8d5ed4dca8331a043cd58",
+                "url": "https://api.github.com/repos/Riverline/multipart-parser/zipball/2fe9026789754c1ff07c06047f0acc113e90933a",
+                "reference": "2fe9026789754c1ff07c06047f0acc113e90933a",
                 "shasum": ""
             },
             "require": {
@@ -4445,7 +4445,7 @@
                 "multipart",
                 "parser"
             ],
-            "time": "2020-01-20T15:25:10+00:00"
+            "time": "2020-01-24T09:39:24+00:00"
         },
         {
             "name": "rize/uri-template",
