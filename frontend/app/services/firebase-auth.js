@@ -3,7 +3,7 @@ import { get, set } from '@ember/object';
 import { Promise } from 'rsvp';
 
 export default class FirebaseAuthService extends Service {
-  @service('store') store;
+  @service store;
   @service session;
   @service modalDialog;
   @service systemMessages;

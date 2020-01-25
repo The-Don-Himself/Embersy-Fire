@@ -4,7 +4,7 @@ import ENV from 'embersy-fire/config/environment';
 
 export default class SessionService extends Service {
 
-  @service('store') store;
+  @service store;
   @service firebaseAuth;
   @service systemMessages;
 

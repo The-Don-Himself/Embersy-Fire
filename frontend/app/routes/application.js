@@ -5,7 +5,7 @@ import { hash, Promise } from 'rsvp';
 
 export default class ApplicationRoute extends Route {
 
-  @service('store') store;
+  @service store;
   @service location;
   @service firebaseAuth;
   @service session;
