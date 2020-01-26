@@ -32,7 +32,7 @@ export default class Router extends EmberRouter {
       }
     });
 
-    this.on('routeDidChange', transition => {
+    this.on('routeDidChange', (/* transition */) => {
       if (isFastBoot) {
         let headers = router.fastboot.response.headers;
         headers.delete('Set-Cookie');
