@@ -16,17 +16,18 @@
       </h2>
       <div class="mdc-dialog__content" id="my-dialog-content">
 
-       {{#if modalDialog.login}}
+        {{#if modalDialog.login}}
+          <Application::MdcTab::LoginOrSignUp />
+        {{/if}}
 
-       {{/if}}
+        {{#if modalDialog.firebaseAuth}}
+          <div id="firebaseui-auth-container"></div>
+        {{/if}}
 
-       {{#if modalDialog.firebaseAuth}}
-         <div id="firebaseui-auth-container"></div>
-       {{/if}}
+        {{#if modalDialog.custom}}
+          {{ modalDialog.custom.content }}
+        {{/if}}
 
-       {{#if modalDialog.custom}}
-         {{ modalDialog.custom.content }}
-       {{/if}}
       </div>
       <footer class="mdc-dialog__actions">
         <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">Close</button>

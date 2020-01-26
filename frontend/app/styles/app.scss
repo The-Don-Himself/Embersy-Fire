@@ -5,45 +5,57 @@ $mdc-theme-background: #ffffff;
 @import "material-components-web/material-components-web";
 
 .mdc-text-field--box:not(.mdc-text-field--disabled) {
-    background-color: unset;
+  background-color: unset;
 }
 
 body {
-    background-color: #f1f8f7;
+  background-color: #f1f8f7;
 }
+
+.tab {
+  display: none;
+  padding: 8px;
+}
+.tab.active {
+  display: block;
+}
+
 .line{
   height: 0;
   margin: 0;
   border: none;
   border-bottom: 1px solid rgba(0,0,0,.12);
 }
+
 @keyframes sonar {
-    0% {
-        transform: scale(.9);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(2);
-        opacity: 0;
-    }
+  0% {
+    transform: scale(.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }
+
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    20% {
-        transform: scale(1.4);
-    }
-    50% {
-        transform: scale(.9);
-    }
-    80% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.4);
+  }
+  50% {
+    transform: scale(.9);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
+
 .centered {
   position: absolute;
   top: 50%;
@@ -52,125 +64,138 @@ body {
   -ms-transform: translate(-50%, -50%); /* IE 9 */
   -webkit-transform: translate(-50%, -50%);
 }
+
 .centrify {
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    text-align: center;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
 }
+
 .fab-menu {
-    background: none;
-    background-color: unset;
-    border: none;
-    box-shadow: none;
-    border: none;
+  background: none;
+  background-color: unset;
+  border: none;
+  box-shadow: none;
+  border: none;
 }
+
 @media (max-width: 479px) {
-    .hide-phone {
-        display: none;
-    }
-    .overflow-hidden-mobile {
-        overflow: hidden;
-    }
+  .hide-phone {
+    display: none;
+  }
+  .overflow-hidden-mobile {
+    overflow: hidden;
+  }
 }
+
 @media (min-width: 480px) and (max-width: 839px) {
-    .hide-tablet {
-        display: none;
-    }
+  .hide-tablet {
+    display: none;
+  }
 }
+
 @media (min-width: 840px) {
-    .hide-desktop {
-        display: none;
-    }
+  .hide-desktop {
+    display: none;
+  }
 }
 
 .menu-anchor {
-    float: right;
+  float: right;
 }
+
 .menu-anchor__button {
-    position: absolute;
-    right: 10px;
-    top: 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
+
 .menu-anchor__menu {
-    position: absolute;
-    right: 0;
-    top: 50px;
+  position: absolute;
+  right: 0;
+  top: 50px;
 }
+
 .background-gradient {
-    background: none;
-    background: -webkit-linear-gradient(rgba(255,0,0,0), rgba(255,0,0,0.25));
-    background: -o-linear-gradient(rgba(255,0,0,0), rgba(255,0,0,0.25));
-    background: -moz-linear-gradient(rgba(255,0,0,0), rgba(255,0,0,0.25));
-    background: linear-gradient(rgba(255,0,0,0), rgba(255,0,0,0.25));
+  background: none;
+  background: -webkit-linear-gradient(rgba(255,0,0,0), rgba(255,0,0,0.25));
+  background: -o-linear-gradient(rgba(255,0,0,0), rgba(255,0,0,0.25));
+  background: -moz-linear-gradient(rgba(255,0,0,0), rgba(255,0,0,0.25));
+  background: linear-gradient(rgba(255,0,0,0), rgba(255,0,0,0.25));
 }
+
 .background-screen {
-    background-color: rgba(0, 150, 136, 0.85);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
+  background-color: rgba(0, 150, 136, 0.85);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
 }
+
 .background-image {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -2;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
 }
 
 .button-white-theme {
-    color: white !important;
-    border-color: white !important;
+  color: white !important;
+  border-color: white !important;
 }
+
 .badge-container {
-    position: relative;
-    -webkit-perspective: 1000;
-    -webkit-backface-visibility: hidden;
-    text-decoration: none;
-    margin: 0.875rem 0.75em 0.125rem 0.75rem;
-    padding: 0.875rem 0.75em 0.125rem 0.75rem;
-    display: inline-block;
-    transition: all ease 0.4s;
+  position: relative;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  text-decoration: none;
+  margin: 0.875rem 0.75em 0.125rem 0.75rem;
+  padding: 0.875rem 0.75em 0.125rem 0.75rem;
+  display: inline-block;
+  transition: all ease 0.4s;
 }
+
 .badge-num {
-    box-sizing: border-box;
-    font-family: 'Trebuchet MS', sans-serif;
-    background: #0099FF;
-    border-radius: 50%;
-    color: #fff;
-    font-weight: bold;
-    font-size: 16px;
-    height: 36px;
-    line-height: 1.75em;
-    top: -10px;
-    right: -10px;
-    border: 2px solid #fff;
-    position: absolute;
-    text-align: center;
-    width: 36px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, .2);
-    animation: pulse 1.5s 1;
+  box-sizing: border-box;
+  font-family: 'Trebuchet MS', sans-serif;
+  background: #0099FF;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  height: 36px;
+  line-height: 1.75em;
+  top: -10px;
+  right: -10px;
+  border: 2px solid #fff;
+  position: absolute;
+  text-align: center;
+  width: 36px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, .2);
+  animation: pulse 1.5s 1;
 }
+
 .badge-num:after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    border: 2px solid rgba(0, 155, 243, .5);
-    opacity: 0;
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    animation: sonar 1.5s 1;
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  border: 2px solid rgba(0, 155, 243, .5);
+  opacity: 0;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  animation: sonar 1.5s 1;
 }
 
 .my-card-content {

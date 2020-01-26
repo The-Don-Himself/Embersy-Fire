@@ -1,1 +1,81 @@
-{{outlet}}
+<div class="mdc-layout-grid">
+
+  <div class="mdc-layout-grid__inner">
+    <div class="
+      mdc-layout-grid__cell
+      mdc-layout-grid__cell--span-3-desktop
+      mdc-layout-grid__cell--span-1-tablet
+      mdc-layout-grid__cell--span-4-phone">
+    </div>
+
+    <div class="
+      mdc-layout-grid__cell
+      mdc-layout-grid__cell--span-6-desktop
+      mdc-layout-grid__cell--span-6-tablet
+      mdc-layout-grid__cell--span-4-phone">
+
+      <h1 class="mdc-typography--headline4">
+        <LinkTo @route="profiles.show" @model="{{ @model.id }}">@{{ @model.username }}</LinkTo>
+      </h1>
+
+      <hr class="line">
+
+      <br>
+
+      <div class="mdc-card">
+        <section class="my-card-content">
+          <div>
+            {{#if @model.avatarversion}}
+              <LinkTo @route="profiles.show" @model="{{ @model.id }}">
+                <img src="{{ assets-base-url }}/users/{{ @model.id }}/v{{ @model.avatarversion }}/avatar.jpeg" alt="avatar" class="user_avatar mdl-shadow--6dp"/>
+              </LinkTo>
+            {{else}}
+              <LinkTo @route="profiles.show" @model="{{ @model.id }}">
+                <img src="{{ assets-base-url }}/avatar-default.png" alt="avatar" class="user_avatar mdl-shadow--6dp"/>
+              </LinkTo>
+            {{/if}}
+          </div>
+
+          {{#if @model.firstname}}
+            <nav class="mdc-list-item">
+              <i class="material-icons mdc-list-item__graphic">person</i>
+              <span>
+                {{ @model.firstname }} {{ @model.lastname }}
+              </span>
+            </nav>
+          {{/if}}
+
+          {{#if @model.country}}
+            <nav class="mdc-list-item">
+              <i class="material-icons mdc-list-item__graphic">flag</i>
+              <span>
+                {{ @model.country.name }}
+              </span>
+            </nav>
+          {{/if}}
+
+          {{#if @model.bio}}
+            <div>
+              <p>
+                {{ @model.bio }}
+              </p>
+            </div>
+          {{/if}}
+
+        </section>
+      </div>
+
+    </div>
+
+    <div class="
+      mdc-layout-grid__cell
+      mdc-layout-grid__cell--span-3-desktop
+      mdc-layout-grid__cell--span-1-tablet
+      mdc-layout-grid__cell--span-4-phone">
+    </div>
+  </div>
+
+</div>
+
+<br>
+<br>
