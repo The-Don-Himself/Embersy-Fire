@@ -1,10 +1,12 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { action, get, getProperties, set } from '@ember/object';
+import { action, getProperties } from '@ember/object';
 
 export default class ApplicationFormsLoginComponent extends Component {
 
   @service firebaseAuth;
+
+  processing = false;
 
   @action
   setMDCTextField(element) {
@@ -18,13 +20,13 @@ export default class ApplicationFormsLoginComponent extends Component {
   sendSignInLinkToEmail() {
     let component = this;
 
-    let firebaseAuth = get(component, 'firebaseAuth');
+    let firebaseAuth = component.firebaseAuth;
     let { email } = getProperties(component, 'email');
 
-    set(component, 'processing', true);
+    component.processing = true;
     firebaseAuth.sendSignInLinkToEmail(email)
       .then(function() {
-        set(component, 'processing', false);
+        component.processing = false;
       });
   }
 

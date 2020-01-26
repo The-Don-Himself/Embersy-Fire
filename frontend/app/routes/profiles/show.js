@@ -1,5 +1,4 @@
 import Route from '@ember/routing/route';
-import { get, set } from '@ember/object';
 
 export default class ProfilesShowRoute extends Route {
 
@@ -8,23 +7,23 @@ export default class ProfilesShowRoute extends Route {
       }
 
       titleToken(model) {
-        return '@' + get(model, 'username');
+        return '@' + model.username;
       }
 
       afterModel(model) {
-        let title = '@' + get(model, 'username') || "404 - Profile Not Found!";
-        set(this, 'headData.title', title);
-        set(this, 'headData.description', '@' + get(model, 'username') + '\'s Profile on EmberSy Fire');
-        set(this, 'headData.keywords', '@' + get(model, 'username') + '\'s Profile on EmberSy Fire');
-        if(get(model, 'avatarversion')){
-          set(this, 'headData.image', 'users/' + get(model, 'id') + '/v' + get(model, 'avatarversion') + '/avatar.jpeg');
+        let title = ( '@' + model.username ) || "404 - Profile Not Found!";
+        this.headData.title = title;
+        this.headData.description = '@' + model.username + '\'s Profile on EmberSy Fire';
+        this.headData.keywords = '@' + model.username + '\'s Profile on EmberSy Fire';
+        if(model.avatarversion){
+          this.headData.image = 'users/' + model.id + '/v' + model.avatarversion + '/avatar.jpeg';
         } else {
-          set(this, 'headData.image', 'default-avatar.jpeg');
+          this.headData.image = 'default-avatar.jpeg';
         }
-        set(this, 'headData.imageType', 'image/jpeg');
-        set(this, 'headData.imageWidth', '200');
-        set(this, 'headData.imageHeight', '200');
-        set(this, 'headData.profile', model);
+        this.headData.imageType = 'image/jpeg';
+        this.headData.imageWidth = '200';
+        this.headData.imageHeight = '200';
+        this.headData.profile = model;
       }
 
 }

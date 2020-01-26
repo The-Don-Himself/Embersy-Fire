@@ -1,5 +1,4 @@
 import Service, { inject as service } from '@ember/service';
-import { get, set } from '@ember/object';
 import { Promise } from 'rsvp';
 
 export default class LocationService extends Service {
@@ -18,8 +17,8 @@ export default class LocationService extends Service {
 
   getGeoOptions(){
     let geo_options = {
-      enableHighAccuracy : true, 
-      maximumAge         : 60000, 
+      enableHighAccuracy : true,
+      maximumAge         : 60000,
       timeout            : 60000
     };
     return geo_options;
@@ -28,12 +27,12 @@ export default class LocationService extends Service {
   getCurrentPosition() {
     let service = this;
 
-    let systemMessages = get(service, 'systemMessages');
+    let systemMessages = service.systemMessages;
     let geo_options = service.getGeoOptions();
 
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(function(position) {
-        let latitude = position.coords.latitude; 
+        let latitude = position.coords.latitude;
         let longitude = position.coords.longitude;
 
         resolve([latitude, longitude]);
@@ -58,27 +57,27 @@ export default class LocationService extends Service {
   }
 
   getIp() {
-    return get(this, 'ip');
+    return this.ip;
   }
 
   setIp(ip) {
-    set(this, 'ip' , ip);
+    this.ip = ip;
   }
 
   getCountryIso2() {
-    return get(this, 'countryIso2');
+    return this.countryIso2;
   }
 
   setCountryIso2(countryIso2) {
-    set(this, 'countryIso2' , countryIso2);
+    this.countryIso2 = countryIso2;
   }
 
   getCoordinates() {
-    return get(this, 'coordinates');
+    return this.coordinates;
   }
 
   setCoordinates(latlon) {
-    set(this, 'coordinates' , latlon);
+    this.coordinates = latlon;
   }
 
   trace() {

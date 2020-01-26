@@ -11,8 +11,10 @@
   {{/unless}}
 
   <div style="{{@form-buttons-div-style}}">
-    {{#if processing}}
-      {{ application/mdc-linear-progress/indeterminate }}
+    {{#if this.processing}}
+      <div style="display:inline-block; vertical-align:middle; width: 100px;">
+        <Application::MdcLinearProgress::Indeterminate />
+      </div>
     {{else}}
       <button type="submit" class="mdc-button mdc-button--raised mdc-theme--primary-dark-bg">
         <div class="mdc-button__ripple"></div>

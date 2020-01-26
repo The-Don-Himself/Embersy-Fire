@@ -1,5 +1,4 @@
 import Service, { inject as service } from '@ember/service';
-import { get, set } from '@ember/object';
 import ENV from 'embersy-fire/config/environment';
 
 export default class SessionService extends Service {
@@ -14,48 +13,48 @@ export default class SessionService extends Service {
     let service = this;
 
     //this variable represents the total number of chats can be displayed according to the viewport width
-    set(service, 'isAuthenticated', undefined);
-    set(service, 'isAdmin', undefined);
-    set(service, 'user_id', 0);
-    set(service, 'user', {});
-    set(service, 'token', undefined);
+    service.isAuthenticated = undefined;
+    service.isAdmin = undefined;
+    service.user_id = 0;
+    service.user = {};
+    service.token = undefined;
   }
 
   setToken(token) {
     let service = this;
 
-    set(service, 'token', token);
+    service.token = token;
   }
 
   setUser(user) {
     let service = this;
 
-    set(service, 'user', user);
+    service.user = user;
   }
 
   setUserId(user_id) {
     let service = this;
 
-    set(service, 'user_id', user_id);
+    service.user_id = user_id;
   }
 
   setIsAuthenticated(bool) {
     let service = this;
 
-    set(service, 'isAuthenticated', bool);
+    service.isAuthenticated = bool;
   }
 
   setIsAdmin(bool) {
     let service = this;
 
-    set(service, 'isAdmin', bool);
+    service.isAdmin = bool;
   }
 
   authorize(authorizerFactory, block) {
     let service = this;
 
-    if (get(service, 'isAuthenticated')) {
-      const token = get(service, 'token');
+    if (service.isAuthenticated) {
+      const token = service.token;
       if (token) {
         block('Authorization', `Bearer ${token}`);
       }
@@ -71,15 +70,15 @@ export default class SessionService extends Service {
       service.setIsAdmin(false);
       service.setUserId(0);
       service.setToken(undefined);
-    }).catch(function(error) {
-      // An error happened.
+    }).catch(function() {
+      // error;
     });
   }
 
   signInWithCustomToken(firebase_token) {
     let service = this;
 
-    let firebaseAuth = get(service, 'firebaseAuth');
+    let firebaseAuth = service.firebaseAuth;
 
     return firebaseAuth.signInWithCustomToken(firebase_token);
   }
@@ -88,45 +87,41 @@ export default class SessionService extends Service {
     let service = this;
 
     let session = service;
-    let store = get(service, 'store');
+    let store = service.store;
 
     let user = firebase.auth().currentUser;
     if(!user){
-      return new Promise((resolve, reject) => {
-        resolve();
-      });
+      return new Promise.resolve();
     }
 
     return store.queryRecord('account', {})
     .then(function(account) {
-      set(service, 'profile' , account);
+      service.profile = account;
 
-      let firebase_token = get(account, 'token');
+      let firebase_token = account.token;
       if(firebase_token){
-        console.log('signInWithCustomToken');
+        // signInWithCustomToken
         return session.signInWithCustomToken(firebase_token).then(function() {
           return store.queryRecord('account', {})
-    			.then(function(account) {
-    				set(service, 'profile' , account);
-    				let userId = get(account, 'id');
-    				session.setUserId(userId);
-    			})
-    			.catch(function() {
-    			  console.error('signInWithCustomToken failed, invalidating session');
-    			  session.invalidate();
-    			});
-    		})
-    		.catch(function() {
-    		  console.error('querying accounts record failed, invalidating session');
-    		  session.invalidate();
-    		});
-      } else {
-	      let userId = get(account, 'id');
+          .then(function(account) {
+            service.profile = account;
+            let userId = account.id;
+            session.setUserId(userId);
+          })
+          .catch(function() {
+            // signInWithCustomToken failed, invalidating session
+            session.invalidate();
+          });
+        })
+        .catch(function() {
+          // querying accounts record failed, invalidating session
+          session.invalidate();
+        });
       }
 
     })
     .catch(function() {
-      console.error('querying accounts record failed, invalidating session');
+      // querying accounts record failed, invalidating session
       session.invalidate();
     });
 
@@ -136,9 +131,8 @@ export default class SessionService extends Service {
     let service = this;
 
     let session = service;
-    let userId = get(service, 'profile.id');
 
-    if (get(session, 'isAuthenticated')) {
+    if (session.isAuthenticated) {
       const headers = {};
 
       headers['X-AUTH-TOKEN'] = session.token;

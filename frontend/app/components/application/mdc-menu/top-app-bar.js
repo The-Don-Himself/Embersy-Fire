@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import { action, get } from '@ember/object';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class ApplicationMdcMenuTopAppBarComponent extends Component {
@@ -20,7 +20,7 @@ export default class ApplicationMdcMenuTopAppBarComponent extends Component {
     @action
     invalidateSession() {
       let component = this;
-      let session = get(component, 'session');
+      let session = component.session;
       session.invalidate();
     }
 

@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { action, get } from '@ember/object';
+import { action } from '@ember/object';
 
 export default class ApplicationMdcDialogSimpleDialogComponent extends Component {
   @service modalDialog;
@@ -12,7 +12,7 @@ export default class ApplicationMdcDialogSimpleDialogComponent extends Component
     let MDCDialog = mdc.dialog.MDCDialog;
     let dialog = new MDCDialog(element);
 
-    let modalDialog = get(component, 'modalDialog');
+    let modalDialog = component.modalDialog;
     modalDialog.setDialog(dialog);
   }
 

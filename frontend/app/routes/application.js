@@ -1,6 +1,5 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import { get } from '@ember/object';
 import { hash, Promise } from 'rsvp';
 
 export default class ApplicationRoute extends Route {
@@ -12,7 +11,7 @@ export default class ApplicationRoute extends Route {
   @service fastboot;
 
   beforeModel() {
-    let isFastBoot = get(this, 'fastboot.isFastBoot');
+    let isFastBoot = this.fastboot.isFastBoot;
     if (!isFastBoot) {
       let route = this;
 
@@ -27,12 +26,12 @@ export default class ApplicationRoute extends Route {
   }
 
   afterModel(resolvedModel , transition) {
-    let isFastBoot = get(this, 'fastboot.isFastBoot');
+    let isFastBoot = this.fastboot.isFastBoot;
 
     if (isFastBoot) {
       return Promise.resolve();
     } else {
-      let firebaseAuth = get(this, 'firebaseAuth');
+      let firebaseAuth = this.firebaseAuth;
 
       if( typeof firebase !== 'undefined' && firebase) {
         firebaseAuth.observeStateChanged();
@@ -49,7 +48,7 @@ export default class ApplicationRoute extends Route {
   }
 
   _loadCurrentUser() {
-    let session = get(this, 'session');
+    let session = this.session;
     return session.loadCurrentUser();
   }
 
@@ -58,7 +57,7 @@ export default class ApplicationRoute extends Route {
   }
 
   _setLocationData(data) {
-    let locationService = get(this, 'location');
+    let locationService = this.location;
 
     if(data === null){
       locationService.setCountryIso2('KE');

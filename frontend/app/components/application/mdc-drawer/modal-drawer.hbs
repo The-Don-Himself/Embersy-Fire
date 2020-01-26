@@ -2,17 +2,17 @@
    class="mdc-drawer mdc-drawer--modal app-drawer"
    {{did-insert this.setMDCDrawer}}
 >
-{{#if fastboot.isFastBoot}}
+{{#if this.fastboot.isFastBoot}}
   Loading...
 {{else}}
- {{#if session.isAuthenticated}}
-   {{#if session.profile}}
+ {{#if this.session.isAuthenticated}}
+   {{#if this.session.profile}}
     <div>
       <ul class="mdc-image-list mdc-image-list--with-text-protection" style="display: block">
         <li class="mdc-image-list__item">
-          <div class="mdc-image-list__image-aspect-container">
-            {{#if session.profile.avatarversion}}
-              <img class="mdc-image-list__image" src={{ concat (assets-base-url) "/users/" session.user_id "/v" session.profile.avatarversion "/avatar.jpeg" }} alt="Avatar">
+          <div class="mdc-image-list__image-aspect-contathis.iner">
+            {{#if this.session.profile.avatarversion}}
+              <img class="mdc-image-list__image" src={{ concat (assets-base-url) "/users/" this.session.user_id "/v" this.session.profile.avatarversion "/avatar.jpeg" }} alt="Avatar">
             {{else}}
               <img class="mdc-image-list__image" src={{ concat (assets-base-url) "/avatar-default.png" }} alt="Avatar">
             {{/if}}
@@ -22,7 +22,7 @@
               <span class="vertical-middle color-text--white">
                 <i class="material-icons" style="vertical-align:super">@</i>
               </span>
-              <span class="vertical-middle color-text--white">{{ session.profile.username }}</span>
+              <span class="vertical-middle color-text--white">{{ this.session.profile.username }}</span>
 
           </div>
         </li>

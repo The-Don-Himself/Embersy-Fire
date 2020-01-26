@@ -7,17 +7,32 @@
       mdc-layout-grid__cell--span-8-tablet
       mdc-layout-grid__cell--span-4-phone">
 
-      {{#if fastboot.isFastBoot}}
-
+      {{#if this.fastboot.isFastBoot}}
+        <div class="full-page-card">
+          <div class="full-page-card__primary-action">
+            <div class="full-page-card__primary">
+              <h1 class="full-page-card__title mdc-typography mdc-typography--headline6">EmberSy Fire</h1>
+              <h3 class="full-page-card__subtitle mdc-typography mdc-typography--subtitle2">
+                <a href="https://github.com/The-Don-Himself/Embersy-Fire" target="_blank" rel="noopener">Open Source on Github</a>
+              </h3>
+            </div>
+            <div class="full-page-card__content">
+              <div style="display:inline-block; vertical-align:middle; width: 240px;">
+                <Application::MdcLinearProgress::Indeterminate />
+              </div>
+            </div>
+            <div class="mdc-typography mdc-typography--body2">EmberSy Fire is your nifty kickstart package for building ambitious web apps. It comprises of an EmberJs 3.x frontend with a Symfony 4.x (flex) powered backend both glued together using Firebase.</div>
+          </div>
+        </div>
       {{else}}
-        {{#if session.isAuthenticated}}
-          {{#if session.profile}}
+        {{#if this.session.isAuthenticated}}
+          {{#if this.session.profile}}
             <div class="full-page-card">
               <div class="full-page-card__primary-action">
                 <div class="full-page-card__primary">
                   <h1 class="full-page-card__title mdc-typography mdc-typography--headline6">EmberSy Fire</h1>
                   <h3 class="full-page-card__subtitle mdc-typography mdc-typography--subtitle2">
-                    <a href="https://github.com/The-Don-Himself/Embersy-Fire" target="_blank">Open Source on Github</a>
+                    <a href="https://github.com/The-Don-Himself/Embersy-Fire" target="_blank" rel="noopener">Open Source on Github</a>
                   </h3>
                 </div>
                 <div class="full-page-card__content">
@@ -33,7 +48,7 @@
               <div class="full-page-card__primary">
                 <h1 class="full-page-card__title mdc-typography mdc-typography--headline6">Welcome to EmberSy Fire</h1>
                 <h3 class="full-page-card__subtitle mdc-typography mdc-typography--subtitle2">
-                  <a href="https://github.com/The-Don-Himself/Embersy-Fire" target="_blank">Open Source on Github</a>
+                  <a href="https://github.com/The-Don-Himself/Embersy-Fire" target="_blank" rel="noopener">Open Source on Github</a>
                 </h3>
               </div>
               <div class="full-page-card__content">
@@ -41,19 +56,19 @@
                 <ul class="mdc-image-list mdc-image-list--masonry my-masonry-image-list">
                   <li class="mdc-image-list__item">
                     <div class="mdc-image-list__image-aspect-container">
-                      <img class="mdc-image-list__image" src="{{ assets-base-url }}/emberjs.png">
+                      <img class="mdc-image-list__image" src="{{ assets-base-url }}/emberjs.png" alt="EmberJS">
                     </div>
                   </li>
 
                   <li class="mdc-image-list__item">
                     <div class="mdc-image-list__image-aspect-container">
-                      <img class="mdc-image-list__image" src="{{ assets-base-url }}/firebase.png">
+                      <img class="mdc-image-list__image" src="{{ assets-base-url }}/firebase.png" alt="Firebase">
                     </div>
                   </li>
 
                   <li class="mdc-image-list__item">
                     <div class="mdc-image-list__image-aspect-container">
-                      <img class="mdc-image-list__image" src="{{ assets-base-url }}/symfony.png">
+                      <img class="mdc-image-list__image" src="{{ assets-base-url }}/symfony.png" alt="Symfony">
                     </div>
                   </li>
                 </ul>

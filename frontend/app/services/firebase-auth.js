@@ -1,5 +1,4 @@
 import Service, { inject as service } from '@ember/service';
-import { get, set } from '@ember/object';
 import { Promise } from 'rsvp';
 
 export default class FirebaseAuthService extends Service {
@@ -15,28 +14,31 @@ export default class FirebaseAuthService extends Service {
     let service = this;
 
     //this variable represents the total number of chats can be displayed according to the viewport width
-    set(service, 'ui', undefined);
-    set(service, 'uiConfig', undefined);
+    service.ui = undefined;
+    service.uiConfig = undefined;
   }
 
   initialize() {
     let service = this;
 
-    let location = get(service, 'location');
-    let systemMessages = get(service, 'systemMessages');
-    let modalDialog = get(service, 'modalDialog');
+    let location = service.location;
+    let systemMessages = service.systemMessages;
+    let modalDialog = service.modalDialog;
 
     let country_iso2 = location.getCountryIso2();
 
     // FirebaseUI config.
     let uiConfig = {
       callbacks: {
-        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-          let user = authResult.user;
-          let credential = authResult.credential;
-          let isNewUser = authResult.additionalUserInfo.isNewUser;
-          let providerId = authResult.additionalUserInfo.providerId;
-          let operationType = authResult.operationType;
+        signInSuccessWithAuthResult: function(/* authResult, redirectUrl */) {
+
+          // let user = authResult.user;
+          // let credential = authResult.credential;
+          // let isNewUser = authResult.additionalUserInfo.isNewUser;
+          // let providerId = authResult.additionalUserInfo.providerId;
+          // let operationType = authResult.operationType;
+
+
           // Do something with the returned AuthResult.
           // Return type determines whether we continue the redirect automatically
           // or whether we leave that to developer to handle.
@@ -48,10 +50,7 @@ export default class FirebaseAuthService extends Service {
         signInFailure: function(error) {
 
           systemMessages.show('Login Failed!');
-          return new Promise((resolve, reject) => {
-            resolve(error);
-          });
-
+          return new Promise.reject(error);
         }
       },
       credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
@@ -86,17 +85,17 @@ export default class FirebaseAuthService extends Service {
       privacyPolicyUrl: 'https://embersy-fire.appscale.cloud/privacy'
     };
 
-    set(service, 'uiConfig', uiConfig);
+    service.uiConfig = uiConfig;
 
     let ui = new firebaseui.auth.AuthUI(firebase.auth());
-    set(service, 'ui', ui);
+    service.ui = ui;
   }
 
   start() {
     let service = this;
 
-    let ui = get(service, 'ui');
-    let uiConfig = get(service, 'uiConfig');
+    let ui = service.ui;
+    let uiConfig = service.uiConfig;
 
     ui.start('#firebaseui-auth-container', uiConfig);
   }
@@ -104,7 +103,7 @@ export default class FirebaseAuthService extends Service {
   checkIsSignInWithEmailLink() {
     let service = this;
 
-    let systemMessages = get(service, 'systemMessages');
+    let systemMessages = service.systemMessages;
 
     // Confirm the link is a sign-in with email link.
 
@@ -143,8 +142,8 @@ export default class FirebaseAuthService extends Service {
   sendSignInLinkToEmail(email) {
     let service = this;
 
-    let systemMessages = get(service, 'systemMessages');
-    let modalDialog = get(service, 'modalDialog');
+    let systemMessages = service.systemMessages;
+    let modalDialog = service.modalDialog;
 
     let actionCodeSettings = {
       // URL you want to redirect back to. The domain (www.example.com) for this
@@ -180,11 +179,11 @@ export default class FirebaseAuthService extends Service {
   signInWithEmailLink(email) {
     let service = this;
 
-    let systemMessages = get(service, 'systemMessages');
+    let systemMessages = service.systemMessages;
 
     // The client SDK will parse the code from the link for you.
     firebase.auth().signInWithEmailLink(email, window.location.href)
-      .then(function(result) {
+      .then(function() {
         window.localStorage.removeItem('emailForSignIn');
 
         systemMessages.show("Login Successfully Completed!");
@@ -197,8 +196,7 @@ export default class FirebaseAuthService extends Service {
   observeStateChanged() {
     let service = this;
 
-    let session = get(service, 'session');
-    let store = get(service, 'store');
+    let session = service.session;
 
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
@@ -221,8 +219,8 @@ export default class FirebaseAuthService extends Service {
             session.setIsAuthenticated(true);
             session.loadCurrentUser();
           })
-          .catch((error) => {
-            console.log(error);
+          .catch(() => {
+
           });
       } else {
         // User is signed out.
@@ -234,10 +232,9 @@ export default class FirebaseAuthService extends Service {
   signInWithCustomToken(firebase_token) {
     let service = this;
 
-    let systemMessages = get(service, 'systemMessages');
+    let systemMessages = service.systemMessages;
 
     return firebase.auth().signInWithCustomToken(firebase_token).catch(function(error) {
-      console.error(error);
       let errorCode = error.code;
       let errorMessage = error.message;
       systemMessages.show('Firebase Authentication Error ' + errorCode + ' : ' + errorMessage);
