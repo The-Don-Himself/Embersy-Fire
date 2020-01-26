@@ -37,6 +37,8 @@ export default class Router extends EmberRouter {
         let headers = router.fastboot.response.headers;
         headers.delete('Set-Cookie');
       } else {
+        // Do something like scroll back to the top on each page transition in the browser
+        // Of course you'll need to install jQuery for below line to work 
         // $('html, body').animate({ scrollTop: 0 }, 500);
       }
     });
