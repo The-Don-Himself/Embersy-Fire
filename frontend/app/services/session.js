@@ -46,17 +46,6 @@ export default class SessionService extends Service {
     service.isAdmin = bool;
   }
 
-  authorize(authorizerFactory, block) {
-    let service = this;
-
-    if (service.isAuthenticated) {
-      const token = service.token;
-      if (token) {
-        block('Authorization', `Bearer ${token}`);
-      }
-    }
-  }
-
   invalidate() {
     let service = this;
 
@@ -66,7 +55,7 @@ export default class SessionService extends Service {
       service.setIsAdmin(false);
       service.setUserId(0);
       service.setToken(undefined);
-    }).catch(function() {
+    }).catch(function(/* error */) {
       // error;
     });
   }

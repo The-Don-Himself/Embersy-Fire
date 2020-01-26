@@ -28,4 +28,11 @@ export default class ApplicationMdcDrawerModalDrawerComponent extends Component 
 
   }
 
+  @action
+  invalidateSession() {
+    let component = this;
+    let session = component.session;
+    session.invalidate();
+  }
+
 }

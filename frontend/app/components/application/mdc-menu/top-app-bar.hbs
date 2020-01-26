@@ -10,9 +10,9 @@
     </a>
 
     <div class="mdc-menu mdc-menu-surface" tabindex="-1" id="toolbar-menu">
-     <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true" style="transform: scale(1, 1);">
+     <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
       <LinkTo @route="profile">
-        <li class="mdc-list-item" role="menuitem" tabindex="0" style="transition-delay: 0.1s;">
+        <li class="mdc-list-item" role="menuitem" tabindex="0">
           <i class="material-icons mdc-list-item__graphic color-text--cyan">account_box</i> My Profile
         </li>
       </LinkTo>
@@ -20,7 +20,7 @@
       <li class="line" role="separator"></li>
 
       <a href="javascript:void(0)" {{action 'invalidateSession' on='click'}}>
-        <li class="mdc-list-item" role="menuitem" tabindex="0" style="transition-delay: 1.0s;">
+        <li class="mdc-list-item" role="menuitem" tabindex="0">
           <i class="material-icons mdc-list-item__graphic color-text--pink">exit_to_app</i> Logout
         </li>
       </a>
@@ -34,15 +34,15 @@
    </a>
 
    <div class="mdc-menu mdc-menu-surface" tabindex="-1" id="toolbar-menu">
-    <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true" style="transform: scale(1, 1);">
+    <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
       <LinkTo @route="login">
-        <li class="mdc-list-item" role="menuitem" tabindex="0" style="transition-delay: 0.1s;">
+        <li class="mdc-list-item" role="menuitem" tabindex="0">
           <i class="material-icons mdc-list-item__graphic color-text--amber">lock</i> Login
         </li>
       </LinkTo>
 
       <LinkTo @route="sign-up">
-        <li class="mdc-list-item" role="menuitem" tabindex="0" style="transition-delay: 0.2s;">
+        <li class="mdc-list-item" role="menuitem" tabindex="0">
           <i class="material-icons mdc-list-item__graphic color-text--cyan">person_add</i> Sign Up
         </li>
       </LinkTo>

@@ -48,7 +48,20 @@
         <li class="mdc-list-item">
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">card_giftcard</i>Deals
         </li>
+        <li class="mdc-list-item">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">bubble_chart</i>Blah Blah
+        </li>
       </nav>
+
+      <div style="position: absolute; bottom: 0; width: 100%">
+        <hr class="mdc-list-divider">
+
+        <nav class="mdc-list">
+          <li class="mdc-list-item" {{action 'invalidateSession' on='click'}}>
+            <i class="material-icons mdc-list-item__graphic color-text--pink">exit_to_app</i> Logout
+          </li>
+        </nav>
+      </div>
     </div>
 
    {{/if}}
