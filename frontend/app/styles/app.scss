@@ -173,6 +173,10 @@ body {
     animation: sonar 1.5s 1;
 }
 
+.my-card-content {
+  padding: 16px;
+}
+
 .my-masonry-image-list {
 	@include mdc-image-list-masonry-columns(3);
 }
