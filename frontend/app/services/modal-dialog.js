@@ -1,6 +1,14 @@
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 export default class ModalDialogService extends Service {
+
+  @tracked dialog;
+  @tracked login;
+  @tracked custom;
+  @tracked search;
+  @tracked firebaseAuth;
+
   setDialog(dialog) {
     this.dialog = dialog;
   }

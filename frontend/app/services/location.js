@@ -1,8 +1,13 @@
 import Service, { inject as service } from '@ember/service';
 import { Promise } from 'rsvp';
+import { tracked } from '@glimmer/tracking';
 
 export default class LocationService extends Service {
   @service systemMessages;
+
+  @tracked ip;
+  @tracked countryIso2;
+  @tracked coordinates;
 
   // HTML5 Geolocation API
   isGeolocationSupported(){

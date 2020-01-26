@@ -1,5 +1,6 @@
 import Service, { inject as service } from '@ember/service';
 import { Promise } from 'rsvp';
+import { tracked } from '@glimmer/tracking';
 
 export default class FirebaseAuthService extends Service {
   @service store;
@@ -8,15 +9,8 @@ export default class FirebaseAuthService extends Service {
   @service systemMessages;
   @service location;
 
-  init() {
-    super.init(...arguments);
-
-    let service = this;
-
-    //this variable represents the total number of chats can be displayed according to the viewport width
-    service.ui = undefined;
-    service.uiConfig = undefined;
-  }
+  @tracked ui;
+  @tracked uiConfig;
 
   initialize() {
     let service = this;
@@ -50,7 +44,7 @@ export default class FirebaseAuthService extends Service {
         signInFailure: function(error) {
 
           systemMessages.show('Login Failed!');
-          return new Promise.reject(error);
+          return Promise.reject(error);
         }
       },
       credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,

@@ -1,7 +1,10 @@
 import Service, { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 export default class SystemMessagesService extends Service {
   @service fastboot;
+
+  @tracked snackbar;
 
   init() {
     super.init(...arguments);

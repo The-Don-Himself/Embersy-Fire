@@ -25,7 +25,7 @@ export default class ApplicationRoute extends Route {
     }
   }
 
-  afterModel(resolvedModel , transition) {
+  afterModel(/* resolvedModel , transition */) {
     let isFastBoot = this.fastboot.isFastBoot;
 
     if (isFastBoot) {

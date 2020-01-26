@@ -1,12 +1,13 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action, getProperties } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 export default class ApplicationFormsLoginComponent extends Component {
 
   @service firebaseAuth;
 
-  processing = false;
+  @tracked processing;
 
   @action
   setMDCTextField(element) {

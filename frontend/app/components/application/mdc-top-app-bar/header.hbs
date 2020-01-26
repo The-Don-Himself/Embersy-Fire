@@ -5,14 +5,14 @@
   <div class="mdc-top-app-bar__row" style="z-index: 2">
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start mdc-top-app-bar__section--shrink-to-fit hide-phone">
       <a href="#" class="drawer-menu material-icons mdc-top-app-bar__navigation-icon color-text--white">menu</a>
-      {{link-to 'EmberSy Fire' 'index' class='mdc-top-app-bar__title color-text--white'}}
+      <LinkTo @route="index" class='mdc-top-app-bar__title color-text--white'>EmberSy Fire</LinkTo>
     </section>
 
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start mdc-top-app-bar__section--shrink-to-fit hide-desktop hide-tablet">
       <a href="#" class="drawer-menu material-icons mdc-top-app-bar__navigation-icon color-text--white">menu</a>
-      {{#link-to 'index' class='color-text--white padding-left-20'}}
+      <LinkTo @route="index" class='color-text--white padding-left-20'>
         <i class="material-icons vertical-middle">home</i>
-      {{/link-to}}
+      </LinkTo>
     </section>
 
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__section--shrink-to-fit hide-phone hide-tablet" style="min-width: 250px">

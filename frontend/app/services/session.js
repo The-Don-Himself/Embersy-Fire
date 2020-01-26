@@ -1,5 +1,7 @@
 import Service, { inject as service } from '@ember/service';
 import ENV from 'embersy-fire/config/environment';
+import { Promise } from 'rsvp';
+import { tracked } from '@glimmer/tracking';
 
 export default class SessionService extends Service {
 
@@ -7,18 +9,12 @@ export default class SessionService extends Service {
   @service firebaseAuth;
   @service systemMessages;
 
-  init() {
-    super.init(...arguments);
-
-    let service = this;
-
-    //this variable represents the total number of chats can be displayed according to the viewport width
-    service.isAuthenticated = undefined;
-    service.isAdmin = undefined;
-    service.user_id = 0;
-    service.user = {};
-    service.token = undefined;
-  }
+  @tracked isAuthenticated;
+  @tracked isAdmin;
+  @tracked user_id;
+  @tracked user;
+  @tracked token;
+  @tracked profile;
 
   setToken(token) {
     let service = this;
@@ -91,7 +87,7 @@ export default class SessionService extends Service {
 
     let user = firebase.auth().currentUser;
     if(!user){
-      return new Promise.resolve();
+      return Promise.resolve();
     }
 
     return store.queryRecord('account', {})

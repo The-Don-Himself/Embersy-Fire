@@ -12,7 +12,7 @@
 
   <div style="{{@form-buttons-div-style}}">
     {{#if this.processing}}
-      <div style="display:inline-block; vertical-align:middle; width: 100px;">
+      <div style="display:inline-block; vertical-align:middle; width: 80px;">
         <Application::MdcLinearProgress::Indeterminate />
       </div>
     {{else}}
@@ -23,7 +23,7 @@
     {{/if}}
 
     {{#if @signup-button}}
-      {{link-to 'Sign Up' 'sign-up' class='mdc-button mdc-button--raised mdc-theme--primary-dark-bg'}}
+      <LinkTo @route="sign-up" class='mdc-button mdc-button--raised mdc-theme--primary-dark-bg'>Sign Up</LinkTo>
     {{/if}}
   </div>
 </form>

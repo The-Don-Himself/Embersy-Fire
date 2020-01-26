@@ -31,10 +31,10 @@
 
     <div class="mdc-drawer__content">
       <nav class="mdc-list">
-        {{#link-to 'index' class='mdc-list-item' }}
+        <LinkTo @route="index" class='mdc-list-item'>
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
           <span class="mdc-list-item__text">Home</span>
-        {{/link-to}}
+        </LinkTo>
 
         <hr class="mdc-list-divider">
         <h6 class="mdc-list-group__subheader">Profile</h6>

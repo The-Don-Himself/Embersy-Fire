@@ -4,7 +4,7 @@ import fetch from 'fetch';
 
 export default class AccountAdapter extends ApplicationAdapter {
 
-  queryRecord(store, type, query) {
+  queryRecord(/* store, type, query */) {
     return firebase.auth().currentUser.getIdTokenResult()
       .then((idTokenResult) => {
         const headers = {};
@@ -22,8 +22,8 @@ export default class AccountAdapter extends ApplicationAdapter {
           .then((data) => {
             return data;
           })
-          .catch((error) => {
-            console.error(error);
+          .catch(() => {
+            // log error;
           });
     });
   }
