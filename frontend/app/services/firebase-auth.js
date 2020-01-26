@@ -219,6 +219,7 @@ export default class FirebaseAuthService extends Service {
       } else {
         // User is signed out.
         // ...
+        session.setIsAuthenticated(false); // Default is undefined which shows a loading spinner
       }
     });
   }
