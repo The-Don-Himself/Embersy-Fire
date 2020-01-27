@@ -47,9 +47,20 @@ class Filesystem
 
         $adapter = new CachedAdapter($selectedAdapter, $cacheStore);
 
-        $filesystem = new Flysystem($adapter, [
-            'visibility' => AdapterInterface::VISIBILITY_PUBLIC
-        ]);
+        $filesystem = new Flysystem($adapter, array(
+                'visibility' => AdapterInterface::VISIBILITY_PUBLIC,
+                // Google Cloud Storage Optimal Configuration
+                'gs' => array(
+                     'acl' => 'public-read',
+                     'enable_cache' => true,
+                     'enable_optimistic_cache' => true,
+                     'read_cache_expiry_seconds' => 31536000,
+                 ),
+                 'metadata' => array(
+                     'cacheControl' => 'public, s-maxage=31536000, max-age=31536000, immutable, stale-if-error=31536000, stale-while-revalidate=31536000',
+                 ),
+            )
+        );
 
         return $filesystem;
     }
