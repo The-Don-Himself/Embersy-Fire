@@ -1,6 +1,7 @@
 import Service, { inject as service } from '@ember/service';
 import { Promise } from 'rsvp';
 import { tracked } from '@glimmer/tracking';
+import fetch from 'fetch';
 
 export default class LocationService extends Service {
   @service systemMessages;

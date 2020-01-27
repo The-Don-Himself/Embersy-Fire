@@ -241,3 +241,19 @@ body {
 .my-masonry-image-list {
 	@include mdc-image-list-masonry-columns(3);
 }
+
+.image-upload-wrapper {
+  display: block;
+  text-align:center;
+  margin:0 auto;
+  padding:0px;
+  width:300px;
+  height:300px;
+}
+
+.image-upload {
+  display: block;
+  width:300px;
+  height:300px;
+  max-width: 100%;
+}

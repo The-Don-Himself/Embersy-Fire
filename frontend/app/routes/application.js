@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { hash, Promise } from 'rsvp';
+import fetch from 'fetch';
 
 export default class ApplicationRoute extends Route {
 

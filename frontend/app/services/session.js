@@ -2,6 +2,7 @@ import Service, { inject as service } from '@ember/service';
 import ENV from 'embersy-fire/config/environment';
 import { Promise } from 'rsvp';
 import { tracked } from '@glimmer/tracking';
+import fetch from 'fetch';
 
 export default class SessionService extends Service {
 

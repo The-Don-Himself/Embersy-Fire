@@ -2,11 +2,22 @@
 
 namespace App\Services;
 
+use App\Filesystem\Filesystem;
+
 class ProfileCreateAvatar
 {
+    private $filesystem;
+
+    public function __construct(
+        Filesystem $filesystem
+    ) {
+        $this->filesystem = $filesystem;
+    }
+
     public function create_avatar(int $user_id, $encoded_image, int $version, $viaapp = null)
     {
-        // To-Do Add An Appropriate Filesystem
+        $filesystem = $this->filesystem->getFilesystem();
+
         $dir = 'users/'.$user_id;
         $image_dir = $dir.'/v'.$version;
 
@@ -26,7 +37,7 @@ class ProfileCreateAvatar
 
         $avatarFileName = $image_dir.'/avatar.jpeg';
 
-        // filesystem -> put($avatarFileName, $contents);
+        $filesystem -> put($avatarFileName, $contents);
 
         $thumbnail = imagescale($im, 100, 100);
 
@@ -40,7 +51,7 @@ class ProfileCreateAvatar
 
         $thumbnailFileName = $image_dir.'/thumb.jpeg';
 
-        // filesystem -> put($thumbnailFileName, $contents);
+        $filesystem -> put($thumbnailFileName, $contents);
 
         imagedestroy($im);
         imagedestroy($thumbnail);

@@ -230,6 +230,9 @@
     "league/flysystem": {
         "version": "1.0.62"
     },
+    "league/flysystem-cached-adapter": {
+        "version": "1.0.9"
+    },
     "league/fractal": {
         "version": "0.18.0"
     },

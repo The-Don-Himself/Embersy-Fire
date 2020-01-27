@@ -24,22 +24,38 @@
 
       <br>
 
-      <form class="mdc-card" {{on "submit" this.updateProfile}} >
+      <form class="mdc-card" {{on "submit" this.submitProfileEditForm}} >
 
         <section class="my-card-content">
 
-          <div>
-            {{#if session.profile.avatarversion}}
-              <img src="{{ assets-base-url }}/users/{{ session.profile.id }}/v{{ session.profile.avatarversion }}/avatar.jpeg" alt="avatar" class="user_avatar mdl-shadow--6dp" />
-            {{else}}
-              <img src="{{ assets-base-url }}/avatar-default.png" alt="avatar" class="user_avatar mdl-shadow--6dp" />
-            {{/if}}
-          </div>
+          <p class="mdc-typography--headline6">Avatar</p>
+          <hr class="line">
 
-          <div class="image-upload-wrapper">
+          <br>
+          <br>
+
+          <div style="text-align: center">
+            <div>
+              {{#if session.profile.avatarversion}}
+                <img src="{{ assets-base-url }}/users/{{ session.profile.id }}/v{{ session.profile.avatarversion }}/avatar.jpeg" alt="avatar" class="user_avatar mdl-shadow--6dp" />
+              {{else}}
+                <img src="{{ assets-base-url }}/avatar-default.png" alt="avatar" class="user_avatar mdl-shadow--6dp" />
+              {{/if}}
+            </div>
+
+            <br>
+            <br>
+
             <Input type="file" accept="image/*" {{on "change" this.previewImage}} />
-            {{#if selectedImage}}
-              <img class="image-upload" {{did-insert this.setCropperJS}} />
+
+            <br>
+            <br>
+
+            {{#if this.selectedImage}}
+              <div class="image-upload-wrapper">
+                  <img class="image-upload" />
+                  <Input type="text" name="avatar" class="avatar" hidden=true />
+              </div>
             {{/if}}
           </div>
 

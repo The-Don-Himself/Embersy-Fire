@@ -118,66 +118,12 @@ class AccountsController extends AbstractFOSRestController
     }
 
     /**
-     * @Route("/edit_avatar", name="account_edit_avatar", methods={"POST"})
-     */
-    public function edit_avatarAction(
-        Authentication $authentication,
-        EntityManagerInterface $em,
-        Request $request,
-        ProfileCreateAvatar $profileCreateAvatar
-    ) {
-        $user_id = $authentication->userIdFromRequest($request);
-
-        $view = View::create();
-
-        $avatar_encoded = null;
-
-        $avatar_data = $request->get('avatar');
-        if (!$avatar_data) {
-            $data['error'] = 'A avatar must be uploaded';
-            $view->setData($data);
-            $view->setStatusCode(Response::HTTP_BAD_REQUEST);
-
-            return $view;
-        }
-
-        $avatar_array = explode(',', $avatar_data);
-        $avatar_encoded = $avatar_array[1];
-        $avatar_encoded = str_replace(' ', '+', $avatar_encoded);
-
-        $avatar_decoded = base64_decode($avatar_encoded);
-        $im = imagecreatefromstring($avatar_decoded);
-        if (false === $im) {
-            $data['error'] = 'That image is malformed';
-            $view->setData($data);
-            $view->setStatusCode(Response::HTTP_BAD_REQUEST);
-
-            return $view;
-        }
-
-        imagedestroy($im);
-
-        $profile = $em
-            ->getRepository(Profiles::class)
-            ->queryProfileById($user_id);
-
-        $avatar_version = $profile->getAvatarversion();
-        $version = $avatar_version + 1;
-
-        // Upload & Replace User Avatar
-        $profileCreateAvatar->create_avatar($user_id, $avatar_encoded, $version);
-
-        $view->setStatusCode(Response::HTTP_OK);
-
-        return $view;
-    }
-
-    /**
      * @Route("/edit", name="account_edit", methods={"POST"})
      */
     public function edit_submitAction(
         Authentication $authentication,
         EntityManagerInterface $em,
+        ProfileCreateAvatar $profileCreateAvatar,
         Request $request,
         SerializerInterface $serializer,
         UserCheck $userCheck
@@ -199,20 +145,22 @@ class AccountsController extends AbstractFOSRestController
 
         $view = View::create();
 
-        $birthday = DateTime::createFromFormat('Y-m-d', $birthday_string);
-        if (false === $birthday) {
+        if ($birthday_string) {
+            $birthday = DateTime::createFromFormat('Y-m-d', $birthday_string);
+            if (false === $birthday) {
+                $view->setStatusCode(Response::HTTP_BAD_REQUEST);
+
+                return $view;
+            }
+        }
+
+        if ($gender && 'Male' !== $gender && 'Female' !== $gender) {
             $view->setStatusCode(Response::HTTP_BAD_REQUEST);
 
             return $view;
         }
 
-        if ('Male' !== $gender && 'Female' !== $gender) {
-            $view->setStatusCode(Response::HTTP_BAD_REQUEST);
-
-            return $view;
-        }
-
-        if (!$username || !$email || !$firstname || !$lastname || $country_id < 1) {
+        if (!$username /*  || !$email  */ || !$firstname || !$lastname || !$bio /* || $country_id < 1 */ ) {
             $view->setStatusCode(Response::HTTP_BAD_REQUEST);
 
             return $view;
@@ -239,6 +187,7 @@ class AccountsController extends AbstractFOSRestController
             }
             $profile->setUsername($username);
         }
+
         if ($email) {
             // Check email
             $check_email = $userCheck->checkEmail($email);
@@ -270,6 +219,35 @@ class AccountsController extends AbstractFOSRestController
 
         $profile->setFirstname($firstname);
         $profile->setLastname($lastname);
+
+        if ($bio) {
+            $profile->setBio($bio);
+        }
+
+        $avatar_encoded = null;
+
+        $avatar_data = $request->get('avatar');
+        if ($avatar_data) {
+            $avatar_array = explode(',', $avatar_data);
+            $avatar_encoded = $avatar_array[1];
+            $avatar_encoded = str_replace(' ', '+', $avatar_encoded);
+
+            $avatar_decoded = base64_decode($avatar_encoded);
+            $im = imagecreatefromstring($avatar_decoded);
+            if (false !== $im) {
+                imagedestroy($im);
+
+                $avatar_version = $profile->getAvatarversion();
+                $version = $avatar_version + 1;
+
+                // Upload & Replace User Avatar
+                $did_upload = $profileCreateAvatar->create_avatar($user_id, $avatar_encoded, $version);
+
+                if(true === $did_upload){
+                    $profile->setAvatarversion($version);
+                }
+            }
+        }
 
         $em->flush();
 
