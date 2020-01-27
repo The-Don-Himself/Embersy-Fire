@@ -24,65 +24,100 @@
 
       <br>
 
-      <div class="mdc-card">
+      <form class="mdc-card" {{on "submit" this.updateProfile}} >
 
         <section class="my-card-content">
-          {{#if session.profile.username}}
-            <nav class="mdc-list-item">
-              <i class="material-icons mdc-list-item__graphic">person</i>
-              <span>
-                {{ session.profile.username }}
-              </span>
-            </nav>
-          {{/if}}
 
           <div>
             {{#if session.profile.avatarversion}}
-              <LinkTo @route="profiles.show" @model="{{ session.profile.id }}">
-                <img src="{{ assets-base-url }}/users/{{ session.profile.id }}/v{{ session.profile.avatarversion }}/avatar.jpeg" alt="avatar" class="user_avatar mdl-shadow--6dp"/>
-              </LinkTo>
+              <img src="{{ assets-base-url }}/users/{{ session.profile.id }}/v{{ session.profile.avatarversion }}/avatar.jpeg" alt="avatar" class="user_avatar mdl-shadow--6dp" />
             {{else}}
-              <LinkTo @route="profiles.show" @model="{{ session.profile.id }}">
-                <img src="{{ assets-base-url }}/avatar-default.png" alt="avatar" class="user_avatar mdl-shadow--6dp"/>
-              </LinkTo>
+              <img src="{{ assets-base-url }}/avatar-default.png" alt="avatar" class="user_avatar mdl-shadow--6dp" />
             {{/if}}
           </div>
 
-          {{#if session.profile.firstname}}
-            <nav class="mdc-list-item">
-              <i class="material-icons mdc-list-item__graphic">person</i>
-              <span>
-                {{ session.profile.firstname }} {{ session.profile.lastname }}
-              </span>
-            </nav>
-          {{/if}}
+          <div class="image-upload-wrapper">
+            <Input type="file" accept="image/*" {{on "change" this.previewImage}} />
+            {{#if selectedImage}}
+              <img class="image-upload" {{did-insert this.setCropperJS}} />
+            {{/if}}
+          </div>
 
-          {{#if session.profile.country}}
-            <nav class="mdc-list-item">
-              <i class="material-icons mdc-list-item__graphic">flag</i>
-              <span>
-                {{ session.profile.country.name }}
-              </span>
-            </nav>
-          {{/if}}
+          <br>
+          <br>
 
-          {{#if session.profile.bio}}
-            <div>
-              <p>
-                {{ session.profile.bio }}
-              </p>
+          <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense" {{did-insert this.setMDCTextField}}>
+            <Input type="text" name="username" class="mdc-text-field__input" required=true minlength=3 aria-labelledby="label-username" value={{ session.profile.username }} />
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <span class="mdc-floating-label mdc-floating-label--float-above" id="label-username">Username</span>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
             </div>
-          {{/if}}
+          </div>
+
+          <br>
+          <br>
+
+          <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense" {{did-insert this.setMDCTextField}}>
+            <Input type="text" name="firstname" class="mdc-text-field__input" required=true minlength=3 aria-labelledby="label-firstname" value={{ session.profile.firstname }} />
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <span class="mdc-floating-label mdc-floating-label--float-above" id="label-firstname">First Name</span>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+
+          <br>
+          <br>
+
+          <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense" {{did-insert this.setMDCTextField}}>
+            <Input type="text" name="lastname" class="mdc-text-field__input" required=true minlength=3  aria-labelledby="label-lastname" @value={{ session.profile.lastname }} />
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <span class="mdc-floating-label mdc-floating-label--float-above" id="label-lastname">Last Name</span>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+
+          <br>
+          <br>
+
+          <label class="mdc-text-field mdc-text-field--textarea" {{did-insert this.setMDCTextField}}>
+            <Textarea name="bio" class="mdc-text-field__input" rows="8" cols="40" required=false aria-labelledby="label-bio" @value={{ session.profile.bio }} />
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label class="mdc-floating-label mdc-floating-label--float-above" id="label-bio">Bio</label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </label>
+
+          <br>
+          <br>
 
         </section>
 
         <div class="mdc-card__actions">
-          <LinkTo @route="profile" class="mdc-button mdc-card__action mdc-card__action--button">
-            <span class="mdc-button__label">View Your Profile</span>
-          </LinkTo>
+          {{#if this.processing}}
+            <div style="display:inline-block; vertical-align:middle; width: 80px;">
+              <Application::MdcLinearProgress::Indeterminate />
+            </div>
+          {{else}}
+            <button type="submit" class="mdc-button mdc-button--raised mdc-theme--primary-dark-bg">
+              <div class="mdc-button__ripple"></div>
+              <span class="mdc-button__label">Update</span>
+            </button>
+          {{/if}}
         </div>
 
-      </div>
+      </form>
 
     </div>
 

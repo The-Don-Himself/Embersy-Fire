@@ -1,8 +1,14 @@
-<form {{action 'sendSignInLinkToEmail' on='submit'}} class="{{@form-class}}" {{did-insert this.setMDCTextField}}>
+<form {{action 'sendSignInLinkToEmail' on='submit'}} class="{{@form-class}}">
   <!-- Email -->
-  <div style="{{@form-div-style}}" class="mdc-text-field mdc-text-field--box mdc-text-field--dense email">
-    {{ input type="text" name="login[email]" class="mdc-text-field__input" placeholder="Email" required=true minlength=3 value=email }}
-    <div class="mdc-line-ripple"></div>
+  <div style="{{@form-div-style}}" class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense" {{did-insert this.setMDCTextField}}>
+    <Input type="text" name="login[email]" class="mdc-text-field__input" placeholder="Email" required=true minlength=3 aria-labelledby="label-email" @value={{ email }} />
+    <div class="mdc-notched-outline">
+      <div class="mdc-notched-outline__leading"></div>
+      <div class="mdc-notched-outline__notch">
+        <span class="mdc-floating-label" id="label-email">Email</span>
+      </div>
+      <div class="mdc-notched-outline__trailing"></div>
+    </div>
   </div>
 
   {{#unless @signup-button}}

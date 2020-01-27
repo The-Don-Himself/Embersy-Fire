@@ -152,5 +152,12 @@ module.exports = function(defaults) {
     }]
   });
 
+  app.import('node_modules/cropperjs/dist/cropper.css');
+  app.import('node_modules/cropperjs/dist/cropper.js', {
+    using: [{
+      transformation: 'fastbootShim'
+    }]
+  });
+
   return app.toTree();
 };

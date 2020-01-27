@@ -12,9 +12,7 @@ export default class ApplicationFormsLoginComponent extends Component {
   @action
   setMDCTextField(element) {
     let MDCTextField = mdc.textField.MDCTextField;
-
-    let emailTextbox = element.querySelector(".email");
-    new MDCTextField(emailTextbox);
+    new MDCTextField(element);
   }
 
   @action
