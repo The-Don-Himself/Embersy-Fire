@@ -45,3 +45,6 @@ Firebase is built on Google infrastructure and scales automatically, for even th
 Firebase products work great individually but share data and insights, so they work even better together.
 
 [Source](https://firebase.google.com/)
+
+### Usage
+Please see the individual ReadMEs in each folder to understand how to install and use this kickstart.
