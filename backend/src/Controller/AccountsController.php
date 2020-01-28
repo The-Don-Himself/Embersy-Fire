@@ -134,7 +134,7 @@ class AccountsController extends AbstractFOSRestController
             return $view;
         }
 
-        if (!$username /*  || !$email  */ || !$firstname || !$lastname || !$bio /* || $country_id < 1 */) {
+        if (!$username || !$firstname || !$lastname || !$bio /* || $country_id < 1 */) {
             $view->setStatusCode(Response::HTTP_BAD_REQUEST);
 
             return $view;
@@ -196,6 +196,10 @@ class AccountsController extends AbstractFOSRestController
 
         if ($bio) {
             $profile->setBio($bio);
+        }
+
+        if ($gender) {
+            $profile->setGender($gender);
         }
 
         $avatar_encoded = null;
