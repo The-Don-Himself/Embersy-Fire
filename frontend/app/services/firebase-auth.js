@@ -236,4 +236,8 @@ export default class FirebaseAuthService extends Service {
     });
   }
 
+  getIdTokenResult() {
+    return firebase.auth().currentUser.getIdTokenResult();
+  }
+
 }

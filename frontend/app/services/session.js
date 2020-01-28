@@ -118,23 +118,37 @@ export default class SessionService extends Service {
 
     let session = service;
 
-    if (session.isAuthenticated) {
-      const headers = {};
+    session.getToken()
+      .then((token) => {
 
-      headers['X-AUTH-TOKEN'] = session.token;
-      headers['Accept'] = 'application/json, text/javascript, */*';
+        const headers = {};
 
-      let fetchInit = {
-        method: 'POST',
-        headers: headers,
-        cache: 'default'
-      };
+        headers['X-AUTH-TOKEN'] = token;
+        headers['Accept'] = 'application/json, text/javascript, */*';
 
-      fetch(ENV.apiUrl + '/api/accounts/logout' , fetchInit)
-      .then(function(){
+        let fetchInit = {
+          method: 'POST',
+          headers: headers,
+          cache: 'default'
+        };
 
+        fetch(ENV.apiUrl + '/api/accounts/logout' , fetchInit)
+        .then(function(){
+
+        });
       });
-    }
+  }
+
+  getToken() {
+    let service = this;
+
+    let firebaseAuth = service.firebaseAuth;
+
+    return firebaseAuth.getIdTokenResult()
+      .then((idTokenResult) => {
+        return Promise.resolve(idTokenResult.token);
+      });
+
   }
 
 }

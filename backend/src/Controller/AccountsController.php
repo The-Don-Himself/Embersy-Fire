@@ -92,32 +92,6 @@ class AccountsController extends AbstractFOSRestController
     }
 
     /**
-     * @Route("/{account_id}", name="accounts_api", methods={"GET"})
-     * @Cache(public=false, maxage="0", smaxage="0")
-     */
-    public function accountAction(
-        Authentication $authentication,
-        EntityManagerInterface $em,
-        Request $request,
-        SerializerInterface $serializer,
-        int $account_id
-    ) {
-        $user_id = $authentication->userIdFromRequest($request);
-
-        $view = View::create();
-
-        if ($user_id != $account_id) {
-            $view->setStatusCode(Response::HTTP_FORBIDDEN);
-
-            return $view;
-        }
-
-        $view->setStatusCode(Response::HTTP_OK);
-
-        return $view;
-    }
-
-    /**
      * @Route("/edit", name="account_edit", methods={"POST"})
      */
     public function edit_submitAction(

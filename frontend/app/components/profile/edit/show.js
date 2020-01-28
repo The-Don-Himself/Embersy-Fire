@@ -52,6 +52,7 @@ export default class ProfileEditShowComponent extends Component {
       } else {
         if(cropper){
           cropper.destroy();
+          component.cropper = undefined;
         }
         component.selectedImage = false;
       }
@@ -97,32 +98,34 @@ export default class ProfileEditShowComponent extends Component {
         formData.append('avatar', dataURL);
       }
 
-      let profile = JSON.stringify(Object.fromEntries(formData));
-
-
       let session = component.session;
 
-      const headers = {};
+      session.getToken()
+        .then((token) => {
 
-      headers['X-AUTH-TOKEN'] = session.token;
-      headers['Accept'] = 'application/json, text/javascript, */*';
+          const headers = {};
 
-      let fetchInit = {
-        method: 'POST',
-        headers: headers,
-        body: formData
-      };
+          headers['X-AUTH-TOKEN'] = token;
+          headers['Accept'] = 'application/json, text/javascript, */*';
 
-      fetch(ENV.apiUrl + '/api/accounts/edit' , fetchInit)
-      .then(function(){
-        session.loadCurrentUser();
-      })
-      .catch(function(){
+          let fetchInit = {
+            method: 'POST',
+            headers: headers,
+            body: formData
+          };
 
-      })
-      .then(function(){
-        component.processing = false;
-      });
+          fetch(ENV.apiUrl + '/api/accounts/edit' , fetchInit)
+          .then(function(){
+            session.loadCurrentUser();
+          })
+          .catch(function(){
+
+          })
+          .then(function(){
+            component.processing = false;
+          });
+
+        });
 
     }
 
