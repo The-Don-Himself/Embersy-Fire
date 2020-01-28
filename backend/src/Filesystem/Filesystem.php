@@ -3,7 +3,6 @@
 namespace App\Filesystem;
 
 use Google\Cloud\Storage\StorageClient;
-use League\Flysystem\Adapter\Local;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Cached\Storage\Memory as MemoryStore;
@@ -28,8 +27,6 @@ class Filesystem
         $kernel_environment = $this->kernel_environment;
 
         if ('dev' == $kernel_environment) {
-            $selectedAdapter = new Local('/wamp64/www/embersy-fire/static');
-        } else {
             $credentialsPath = realpath($this->kernel_root_dir.'/../embersy-fire-dev-firebase-adminsdk.json');
 
             $storage = new StorageClient([
@@ -39,6 +36,18 @@ class Filesystem
             ]);
 
             $bucket = $storage->bucket('embersy-fire-dev.appspot.com');
+
+            $selectedAdapter = new GoogleStorageAdapter($storage, $bucket);
+        } else {
+            $credentialsPath = realpath($this->kernel_root_dir.'/../embersy-fire-firebase-adminsdk.json');
+
+            $storage = new StorageClient([
+              'projectId' => 'embersy-fire',
+              'requestTimeout' => 10,
+              'keyFilePath' => $credentialsPath,
+            ]);
+
+            $bucket = $storage->bucket('embersy-fire.appspot.com');
 
             $selectedAdapter = new GoogleStorageAdapter($storage, $bucket);
         }
