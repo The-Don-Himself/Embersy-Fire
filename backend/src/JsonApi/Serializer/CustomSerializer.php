@@ -27,7 +27,6 @@ class CustomSerializer extends ArraySerializer
      * Serialize a collection.
      *
      * @param string $resourceKey
-     * @param array  $data
      *
      * @return array
      */
@@ -46,7 +45,6 @@ class CustomSerializer extends ArraySerializer
      * Serialize an item.
      *
      * @param string $resourceKey
-     * @param array  $data
      *
      * @return array
      */
@@ -89,8 +87,6 @@ class CustomSerializer extends ArraySerializer
     /**
      * Serialize the paginator.
      *
-     * @param PaginatorInterface $paginator
-     *
      * @return array
      */
     public function paginator(PaginatorInterface $paginator)
@@ -127,8 +123,6 @@ class CustomSerializer extends ArraySerializer
     /**
      * Serialize the meta.
      *
-     * @param array $meta
-     *
      * @return array
      */
     public function meta(array $meta)
@@ -159,9 +153,6 @@ class CustomSerializer extends ArraySerializer
 
     /**
      * Serialize the included data.
-     *
-     * @param ResourceInterface $resource
-     * @param array             $data
      *
      * @return array
      */
@@ -278,8 +269,6 @@ class CustomSerializer extends ArraySerializer
 
     /**
      * Set the root objects of the JSON API tree.
-     *
-     * @param array $objects
      */
     protected function setRootObjects(array $objects = [])
     {
@@ -373,16 +362,12 @@ class CustomSerializer extends ArraySerializer
     }
 
     /**
-     * @param array $data
-     *
      * @return int
      */
     protected function getIdFromData(array $data)
     {
         if (!array_key_exists('id', $data)) {
-            throw new InvalidArgumentException(
-                'JSON API resource objects MUST have a valid id'
-            );
+            throw new InvalidArgumentException('JSON API resource objects MUST have a valid id');
         }
 
         return $data['id'];
@@ -390,8 +375,6 @@ class CustomSerializer extends ArraySerializer
 
     /**
      * Keep all sideloaded inclusion data on the top level.
-     *
-     * @param array $data
      *
      * @return array
      */

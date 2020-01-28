@@ -29,9 +29,6 @@ class Profiles
 
     /**
      * @ORM\Column(type="string", unique=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     * @Serializer\Groups({"Default"})
      */
     protected $firebase_id;
 

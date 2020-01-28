@@ -25,7 +25,7 @@ class UserCheck
 
         $safe_username = $username;
 
-        $forbidden = array();
+        $forbidden = [];
         // Priviledged Usernames
         $forbidden[] = 'admin';
         $forbidden[] = 'administrator';

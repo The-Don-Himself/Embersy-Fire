@@ -1,6 +1,6 @@
 <form {{action 'sendSignInLinkToEmail' on='submit'}} class="{{@form-class}}">
   <!-- Email -->
-  <div style="{{@form-div-style}}" class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense" {{did-insert this.setMDCTextField}}>
+  <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense {{@form-div-class}}" {{did-insert this.setMDCTextField}}>
     <Input type="text" name="login[email]" class="mdc-text-field__input" placeholder="Email" required=true minlength=3 aria-labelledby="label-email" @value={{ email }} />
     <div class="mdc-notched-outline">
       <div class="mdc-notched-outline__leading"></div>
@@ -16,7 +16,7 @@
     <br>
   {{/unless}}
 
-  <div style="{{@form-buttons-div-style}}">
+  <div class="{{@form-buttons-div-class}}">
     {{#if this.processing}}
       <div style="display:inline-block; vertical-align:middle; width: 80px;">
         <Application::MdcLinearProgress::Indeterminate />

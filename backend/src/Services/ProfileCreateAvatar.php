@@ -37,7 +37,7 @@ class ProfileCreateAvatar
 
         $avatarFileName = $image_dir.'/avatar.jpeg';
 
-        $filesystem -> put($avatarFileName, $contents);
+        $filesystem->put($avatarFileName, $contents);
 
         $thumbnail = imagescale($im, 100, 100);
 
@@ -51,7 +51,7 @@ class ProfileCreateAvatar
 
         $thumbnailFileName = $image_dir.'/thumb.jpeg';
 
-        $filesystem -> put($thumbnailFileName, $contents);
+        $filesystem->put($thumbnailFileName, $contents);
 
         imagedestroy($im);
         imagedestroy($thumbnail);

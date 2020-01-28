@@ -46,7 +46,7 @@ class AccountsController extends AbstractFOSRestController
     ) {
         $verifiedIdToken = $authentication->verifiedIdTokenFromRequest($request);
 
-        $meta = array();
+        $meta = [];
 
         if (!$verifiedIdToken->hasClaim('profile_id')) {
             // Let's Create A New Profile
@@ -82,7 +82,7 @@ class AccountsController extends AbstractFOSRestController
         $manager->setSerializer(new CustomSerializer());
         $resource = new Item($jsonApiObject, new AccountsTransformer(), 'account');
         $array = $manager->createData($resource)->toArray();
-        $array['meta'] = (object)$meta;
+        $array['meta'] = (object) $meta;
         // $meta ? $array['meta'] = (object)$meta : null;
 
         $view = View::create();
@@ -134,7 +134,7 @@ class AccountsController extends AbstractFOSRestController
             return $view;
         }
 
-        if (!$username /*  || !$email  */ || !$firstname || !$lastname || !$bio /* || $country_id < 1 */ ) {
+        if (!$username /*  || !$email  */ || !$firstname || !$lastname || !$bio /* || $country_id < 1 */) {
             $view->setStatusCode(Response::HTTP_BAD_REQUEST);
 
             return $view;
@@ -217,7 +217,7 @@ class AccountsController extends AbstractFOSRestController
                 // Upload & Replace User Avatar
                 $did_upload = $profileCreateAvatar->create_avatar($user_id, $avatar_encoded, $version);
 
-                if(true === $did_upload){
+                if (true === $did_upload) {
                     $profile->setAvatarversion($version);
                 }
             }

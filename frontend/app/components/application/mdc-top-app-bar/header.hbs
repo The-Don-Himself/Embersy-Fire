@@ -25,7 +25,7 @@
           {{ application/profile/top-app-bar }}
         {{/if}}
        {{else}}
-          {{ application/form/login form-class="hide-phone hide-tablet" form-div-style="vertical-align: middle" form-buttons-div-style="display:inline-block;vertical-align:middle;" signup-button=true }}
+          {{ application/form/login form-class="hide-phone hide-tablet" form-div-class="vertical-middle" form-buttons-div-class="inline-block vertical-middle" signup-button=true }}
        {{/if}}
       {{/if}}
 
@@ -57,7 +57,7 @@
         {{ application/profile/top-app-bar }}
        {{/if}}
       {{else}}
-        {{ application/form/login form-class="hide-phone" form-div-style="vertical-align: middle" form-buttons-div-style="display:inline-block;vertical-align:middle;" signup-button=true }}
+        {{ application/form/login form-class="hide-phone" form-div-class="vertical-middle" form-buttons-div-class="inline-block vertical-middle" signup-button=true }}
 
         <div class="hide-tablet">
          <button type="button" class="mdc-button mdc-button--outlined button-white-theme" {{ action "modalLogin" on="click"}}>

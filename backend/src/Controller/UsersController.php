@@ -7,7 +7,6 @@ use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\View\View;
 use JMS\Serializer\SerializerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UsersController extends AbstractFOSRestController
 {
-
     /**
      * @Route("/users/{firebase_id}", name="user_api", methods={"GET"})
      * @Cache(public=true, maxage="60", smaxage="0")
@@ -46,5 +44,4 @@ class UsersController extends AbstractFOSRestController
 
         return $view;
     }
-
 }

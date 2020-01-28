@@ -9,6 +9,7 @@ import fetch from 'fetch';
 export default class ProfileEditShowComponent extends Component {
 
     @service session;
+    @service systemMessages;
 
     @tracked selectedImage;
     @tracked processing;
@@ -98,6 +99,7 @@ export default class ProfileEditShowComponent extends Component {
         formData.append('avatar', dataURL);
       }
 
+      let systemMessages = component.systemMessages;
       let session = component.session;
 
       session.getToken()
@@ -116,10 +118,11 @@ export default class ProfileEditShowComponent extends Component {
 
           fetch(ENV.apiUrl + '/api/accounts/edit' , fetchInit)
           .then(function(){
+            systemMessages.show('Update Success!');
             session.loadCurrentUser();
           })
           .catch(function(){
-
+            systemMessages.show('Update Failed!');
           })
           .then(function(){
             component.processing = false;

@@ -50,11 +50,11 @@ class ProfilesController extends AbstractFOSRestController
 
         $profiles_array = $serializer->toArray($profiles);
 
-        $meta = array(
+        $meta = [
             'count' => count($profiles_array),
-        );
+        ];
 
-        $data = array('data' => array(), 'meta' => $meta);
+        $data = ['data' => [], 'meta' => $meta];
 
         $view = View::create();
 
@@ -64,7 +64,7 @@ class ProfilesController extends AbstractFOSRestController
             return $view;
         }
 
-        $jsonApiObjects = array();
+        $jsonApiObjects = [];
         foreach ($profiles_array as $profile_array) {
             $jsonApiObjects[] = new Profiles($profile_array);
         }
