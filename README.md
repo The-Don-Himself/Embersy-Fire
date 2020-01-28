@@ -15,7 +15,7 @@
 
 
 ### Production Use
-Embersy is the same package powering [Campus Discounts](https://campus-discounts.com/) as such we have an active interest in maintaining it, that said pull requests are most welcome .
+EmberSy Fire is the same package powering [Campus Discounts](https://campus-discounts.com/) as such we have an active interest in maintaining it, that said pull requests are most welcome :smile: .
 
 ### What is [Ember](https://emberjs.com)?
 Ember.js is a framework for creating ambitious web applications
