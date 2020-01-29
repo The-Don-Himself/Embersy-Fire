@@ -27,7 +27,7 @@ class Filesystem
         $kernel_environment = $this->kernel_environment;
 
         if ('dev' == $kernel_environment) {
-            $credentialsPath = realpath($this->kernel_root_dir.'/../embersy-fire-dev-firebase-adminsdk.json');
+            $credentialsPath = realpath($this->kernel_root_dir.'/../keys/embersy-fire-dev-firebase-adminsdk.json');
 
             $storage = new StorageClient([
               'projectId' => 'embersy-fire-dev',
@@ -39,7 +39,7 @@ class Filesystem
 
             $selectedAdapter = new GoogleStorageAdapter($storage, $bucket);
         } else {
-            $credentialsPath = realpath($this->kernel_root_dir.'/../embersy-fire-firebase-adminsdk.json');
+            $credentialsPath = realpath($this->kernel_root_dir.'/../keys/embersy-fire-firebase-adminsdk.json');
 
             $storage = new StorageClient([
               'projectId' => 'embersy-fire',

@@ -15,6 +15,3 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-###> symfony/framework-bundle ###
-/embersy-fire-dev-firebase-adminsdk.json
-/embersy-fire-firebase-adminsdk.json
