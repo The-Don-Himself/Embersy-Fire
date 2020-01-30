@@ -1,0 +1,11 @@
+{{#if (compare this.fastboot.isFastBoot '||' (compare this.session.isAuthenticated '===' undefined) ) }}
+  <Application::Home::Fastboot />
+{{/if}}
+
+{{#if (compare this.session.isAuthenticated '===' false) }}
+  <Application::MdcTab::LoginOrSignUp />
+{{/if}}
+
+{{#if (compare this.session.isAuthenticated '===' true) }}
+  <Profile::Edit::Show />
+{{/if}}

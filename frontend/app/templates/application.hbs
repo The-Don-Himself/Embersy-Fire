@@ -1,5 +1,15 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+<HeadLayout />
+<Application::MdcDrawer::ModalDrawer />
+<div class="mdc-drawer-scrim"></div>
+<div class="app-content" id="app-content">
+  <Application::MdcTopAppBar::Header />
+  <main id="app-main" class="app-main z-index-2">
+    <div class="mdc-top-app-bar--fixed-adjust"></div>
+    <div class="mdc-top-app-bar--fixed-adjust hide-desktop"></div>
 
-{{outlet}}
+    {{ outlet }}
+  </main>
+
+  <Application::Footer::MdlMegaFooter />
+</div>
+<Application::MdcDialog::SimpleDialog />

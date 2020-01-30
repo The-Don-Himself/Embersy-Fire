@@ -9,7 +9,8 @@ module.exports = function(defaults) {
     storeConfigInMeta: false,
     'ember-service-worker': {
       versionStrategy: 'project-version',
-      registrationStrategy: 'inline'
+      registrationStrategy: 'inline',
+      enabled: false
     },
     'esw-index': {
       // Where the location of your index file is at, defaults to `index.html`
@@ -81,7 +82,7 @@ module.exports = function(defaults) {
         'firebaseui.js'
       ],
 
-      // changing this version number will bust the cache 
+      // changing this version number will bust the cache
       version: version
     },
     emberCliConcat: {
@@ -105,12 +106,6 @@ module.exports = function(defaults) {
         'firebaseui',
         '.well-known/assetlinks.json'
       ]
-/*
-      prepend: [{
-        development: 'http://static.embersy-fire.localhost/',
-        production:  'https://static.appscale.cloud/embersy-fire/'
-      }]
-*/
     },
     sassOptions: {
       implementation: require("sass"),
@@ -120,6 +115,7 @@ module.exports = function(defaults) {
     }
   });
 
+  app.import('node_modules/normalize.css/normalize.css');
   app.import('vendor/material/material_fonts.css');
 
   app.import('node_modules/material-components-web/dist/material-components-web.js', {
@@ -129,11 +125,13 @@ module.exports = function(defaults) {
   });
 
   app.import('vendor/css/custom_app.css');
+  app.import('vendor/css/colors.css');
+  app.import('vendor/css/mdl-footer.css');
 
   app.import({
       development: 'vendor/firebase/firebase-init-dev.js',
       production:  'vendor/firebase/firebase-init.js'
-    } , { 
+    } , {
       outputFile: 'firebase-init.js'
   });
 
@@ -143,12 +141,19 @@ module.exports = function(defaults) {
   app.import({
       development: 'vendor/firebase/firebase-messaging-sw-dev.js',
       production:  'vendor/firebase/firebase-messaging-sw.js'
-    } , { 
+    } , {
       outputFile: 'firebase-messaging-sw.js'
   });
 
   app.import('node_modules/firebaseui/dist/firebaseui.css');
   app.import('node_modules/firebaseui/dist/firebaseui.js', {
+    using: [{
+      transformation: 'fastbootShim'
+    }]
+  });
+
+  app.import('node_modules/cropperjs/dist/cropper.css');
+  app.import('node_modules/cropperjs/dist/cropper.js', {
     using: [{
       transformation: 'fastbootShim'
     }]

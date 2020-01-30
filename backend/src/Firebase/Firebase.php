@@ -23,9 +23,9 @@ class Firebase
     {
         $kernel_environment = $this->kernel_environment;
         if ('dev' == $kernel_environment) {
-            $credentialsPath = realpath($this->kernel_root_dir.'/../dev-embersy-fire-firebase-adminsdk.json');
+            $credentialsPath = realpath($this->kernel_root_dir.'/../keys/embersy-fire-dev-firebase-adminsdk.json');
         } else {
-            $credentialsPath = realpath($this->kernel_root_dir.'/../embersy-fire-firebase-adminsdk.json');
+            $credentialsPath = realpath($this->kernel_root_dir.'/../keys/embersy-fire-firebase-adminsdk.json');
         }
         $serviceAccount = ServiceAccount::fromJsonFile($credentialsPath);
 

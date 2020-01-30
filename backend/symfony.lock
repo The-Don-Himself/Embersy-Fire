@@ -215,11 +215,23 @@
     "kreait/gcp-metadata": {
         "version": "1.0.1"
     },
+    "laminas/laminas-code": {
+        "version": "3.4.1"
+    },
+    "laminas/laminas-eventmanager": {
+        "version": "3.2.1"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.0.1"
+    },
     "lcobucci/jwt": {
         "version": "3.3.1"
     },
     "league/flysystem": {
         "version": "1.0.62"
+    },
+    "league/flysystem-cached-adapter": {
+        "version": "1.0.9"
     },
     "league/fractal": {
         "version": "0.18.0"
@@ -619,6 +631,9 @@
     },
     "twig/twig": {
         "version": "v3.0.1"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.0.0"
     },
     "webmozart/assert": {
         "version": "1.6.0"

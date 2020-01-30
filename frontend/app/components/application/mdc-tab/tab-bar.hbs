@@ -1,0 +1,34 @@
+<div class="mdc-tab-bar" role="tablist" {{did-insert this.setMDCTabBar}}>
+  <div class="mdc-tab-scroller">
+    <div class="mdc-tab-scroller__scroll-area">
+      <div class="mdc-tab-scroller__scroll-content">
+        {{#each @tabs as |tab index|}}
+
+         {{#if (compare @permutation '===' 'icons-with-text') }}
+            <button class="mdc-tab {{ if (compare index '==' 0) 'mdc-tab--active' }}" role="tab" tabindex="{{ index }}">
+              <span class="mdc-tab__content">
+                <span class="mdc-tab__icon material-icons {{ tab.color }}">{{ tab.icon }}</span>
+                <span class="mdc-tab__text-label">{{ tab.label }}</span>
+              </span>
+              <span class="mdc-tab-indicator {{ if (compare index '==' 0) 'mdc-tab-indicator--active' }} {{ if @indicator indicator}}">
+                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+              </span>
+              <span class="mdc-tab__ripple"></span>
+            </button>
+         {{else if (compare @permutation '===' 'icon-tabs') }}
+            <button class="mdc-tab {{ if (compare index '==' 0) 'mdc-tab--active' }}" role="tab" tabindex="{{ index }}">
+              <span class="mdc-tab__content">
+                <span class="mdc-tab__icon material-icons {{ tab.color }}">{{ tab.icon }}</span>
+                <span class="mdc-tab__text-label"></span>
+              </span>
+              <span class="mdc-tab-indicator {{ if (compare index '==' 0) 'mdc-tab-indicator--active' }} {{ if @indicator @indicator}}">
+                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+              </span>
+              <span class="mdc-tab__ripple"></span>
+            </button>
+         {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>

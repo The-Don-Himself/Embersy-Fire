@@ -1,0 +1,35 @@
+<form {{action 'sendSignInLinkToEmail' on='submit'}} class="{{@form-class}}">
+  <!-- Email -->
+  <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense {{@form-div-class}}" {{did-insert this.setMDCTextField}}>
+    <Input type="text" name="login[email]" class="mdc-text-field__input" placeholder="Email" required=true minlength=3 aria-labelledby="label-email" @value={{ email }} />
+    <div class="mdc-notched-outline">
+      <div class="mdc-notched-outline__leading"></div>
+      <div class="mdc-notched-outline__notch">
+        <span class="mdc-floating-label" id="label-email">Email</span>
+      </div>
+      <div class="mdc-notched-outline__trailing"></div>
+    </div>
+  </div>
+
+  {{#unless @signup-button}}
+    <br>
+    <br>
+  {{/unless}}
+
+  <div class="{{@form-buttons-div-class}}">
+    {{#if this.processing}}
+      <div style="display:inline-block; vertical-align:middle; width: 80px;">
+        <Application::MdcLinearProgress::Indeterminate />
+      </div>
+    {{else}}
+      <button type="submit" class="mdc-button mdc-button--raised mdc-theme--primary-dark-bg">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label">Login</span>
+      </button>
+    {{/if}}
+
+    {{#if @signup-button}}
+      <LinkTo @route="sign-up" class='mdc-button mdc-button--raised mdc-theme--primary-dark-bg'>Sign Up</LinkTo>
+    {{/if}}
+  </div>
+</form>

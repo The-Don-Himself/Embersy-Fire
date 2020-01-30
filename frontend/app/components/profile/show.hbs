@@ -1,0 +1,124 @@
+<div class="mdc-layout-grid">
+
+  <div class="mdc-layout-grid__inner">
+    <div class="
+      mdc-layout-grid__cell
+      mdc-layout-grid__cell--span-3-desktop
+      mdc-layout-grid__cell--span-1-tablet
+      mdc-layout-grid__cell--span-4-phone">
+    </div>
+
+    <div class="
+      mdc-layout-grid__cell
+      mdc-layout-grid__cell--span-6-desktop
+      mdc-layout-grid__cell--span-6-tablet
+      mdc-layout-grid__cell--span-4-phone">
+
+      <h1 class="mdc-typography--headline4">
+        <LinkTo @route="profile">My Profile</LinkTo>
+      </h1>
+
+      <hr class="line">
+
+      <br>
+
+      <div class="mdc-card">
+
+        <section class="my-card-content">
+          <div class="mdc-layout-grid__inner">
+            <div class="
+              mdc-layout-grid__cell
+              mdc-layout-grid__cell--span-6-desktop
+              mdc-layout-grid__cell--span-4-tablet
+              mdc-layout-grid__cell--span-1-phone">
+
+              <div>
+                {{#if session.profile.avatarversion}}
+                  <LinkTo @route="profiles.show" @model="{{ session.profile.id }}">
+                    <img src="{{ assets-base-url }}/users/{{ session.profile.id }}/v{{ session.profile.avatarversion }}/avatar.jpeg" alt="avatar" class="user_avatar mdl-shadow--6dp"/>
+                  </LinkTo>
+                {{else}}
+                  <LinkTo @route="profiles.show" @model="{{ session.profile.id }}">
+                    <img src="{{ assets-base-url }}/avatar-default.png" alt="avatar" class="user_avatar mdl-shadow--6dp"/>
+                  </LinkTo>
+                {{/if}}
+              </div>
+
+            </div>
+
+            <div class="
+              mdc-layout-grid__cell
+              mdc-layout-grid__cell--span-6-desktop
+              mdc-layout-grid__cell--span-4-tablet
+              mdc-layout-grid__cell--span-1-phone">
+
+              {{#if session.profile.username}}
+                <nav class="mdc-list-item">
+                  <i class="material-icons mdc-list-item__graphic">person</i>
+                  <span>
+                    {{ session.profile.username }}
+                  </span>
+                </nav>
+              {{/if}}
+
+              {{#if session.profile.firstname}}
+                <nav class="mdc-list-item">
+                  <i class="material-icons mdc-list-item__graphic">person</i>
+                  <span>
+                    {{ session.profile.firstname }} {{ session.profile.lastname }}
+                  </span>
+                </nav>
+              {{/if}}
+
+              {{#if session.profile.country}}
+                <nav class="mdc-list-item">
+                  <i class="material-icons mdc-list-item__graphic">flag</i>
+                  <span>
+                    {{ session.profile.country.name }}
+                  </span>
+                </nav>
+              {{/if}}
+
+              {{#if session.profile.bio}}
+                <br>
+
+                <div>
+                  <label class="mdc-text-field mdc-text-field--textarea" {{did-insert this.setMDCTextField}}>
+                    <textarea class="mdc-text-field__input" aria-labelledby="label-bio" rows="4" cols="40" readonly>{{ session.profile.bio }}</textarea>
+                    <div class="mdc-notched-outline">
+                      <div class="mdc-notched-outline__leading"></div>
+                      <div class="mdc-notched-outline__notch">
+                        <label class="mdc-floating-label mdc-floating-label--float-above" id="label-bio">Bio</label>
+                      </div>
+                      <div class="mdc-notched-outline__trailing"></div>
+                    </div>
+                  </label>
+                </div>
+              {{/if}}
+
+            </div>
+          </div>
+        </section>
+
+        <div class="mdc-card__actions">
+          <LinkTo @route="profile.edit" class="mdc-button mdc-card__action mdc-card__action--button">
+            <span class="mdc-button__label">Edit Your Profile</span>
+          </LinkTo>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="
+      mdc-layout-grid__cell
+      mdc-layout-grid__cell--span-3-desktop
+      mdc-layout-grid__cell--span-1-tablet
+      mdc-layout-grid__cell--span-4-phone">
+    </div>
+  </div>
+
+</div>
+
+<br>
+<br>

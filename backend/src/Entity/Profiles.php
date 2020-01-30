@@ -29,9 +29,6 @@ class Profiles
 
     /**
      * @ORM\Column(type="string", unique=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     * @Serializer\Groups({"Default"})
      */
     protected $firebase_id;
 
@@ -101,4 +98,129 @@ class Profiles
      * @Serializer\Groups({"Default"})
      */
     protected $bio;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getFirebaseId(): ?string
+    {
+        return $this->firebase_id;
+    }
+
+    public function setFirebaseId(string $firebase_id): self
+    {
+        $this->firebase_id = $firebase_id;
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getJoined(): ?\DateTimeInterface
+    {
+        return $this->joined;
+    }
+
+    public function setJoined(\DateTimeInterface $joined): self
+    {
+        $this->joined = $joined;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(?string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(?string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getAvatarversion(): ?int
+    {
+        return $this->avatarversion;
+    }
+
+    public function setAvatarversion(int $avatarversion): self
+    {
+        $this->avatarversion = $avatarversion;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(?\DateTimeInterface $birthday): self
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(?string $bio): self
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
 }

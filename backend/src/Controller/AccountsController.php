@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Profiles;
 use App\Firebase\Authentication;
 use App\JsonApi\Model\Accounts;
 use App\JsonApi\Serializer\CustomSerializer;
@@ -11,6 +12,10 @@ use App\Services\ProfileCreateAvatar;
 use App\Services\UserCheck;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\DNSCheckValidation;
+use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
+use Egulias\EmailValidator\Validation\RFCValidation;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations\View as ViewAnnotation;
 use FOS\RestBundle\View\View;
@@ -41,7 +46,7 @@ class AccountsController extends AbstractFOSRestController
     ) {
         $verifiedIdToken = $authentication->verifiedIdTokenFromRequest($request);
 
-        $meta = array();
+        $meta = [];
 
         if (!$verifiedIdToken->hasClaim('profile_id')) {
             // Let's Create A New Profile
@@ -64,7 +69,7 @@ class AccountsController extends AbstractFOSRestController
         }
 
         $profile = $em
-            ->getRepository('App:Profiles')
+            ->getRepository(Profiles::class)
             ->queryProfileById($user_id);
 
         $profile_array = $serializer->toArray($profile);
@@ -75,121 +80,13 @@ class AccountsController extends AbstractFOSRestController
 
         $manager = new Manager();
         $manager->setSerializer(new CustomSerializer());
-        $resource = new Item($jsonApiObject, new AccountsTransformer(), 'accounts');
+        $resource = new Item($jsonApiObject, new AccountsTransformer(), 'account');
         $array = $manager->createData($resource)->toArray();
-        $array['meta'] = $meta;
+        $array['meta'] = (object) $meta;
+        // $meta ? $array['meta'] = (object)$meta : null;
 
         $view = View::create();
         $view->setData($array);
-
-        return $view;
-    }
-
-    /**
-     * @Route("/{account_id}", name="accounts_api", methods={"GET"})
-     * @Cache(public=false, maxage="0", smaxage="0")
-     */
-    public function accountAction(
-        Authentication $authentication,
-        EntityManagerInterface $em,
-        Request $request,
-        SerializerInterface $serializer,
-        int $account_id
-    ) {
-        $user_id = $authentication->userIdFromRequest($request);
-
-        $view = View::create();
-
-        if ($user_id != $account_id) {
-            $view->setStatusCode(Response::HTTP_FORBIDDEN);
-
-            return $view;
-        }
-
-        $view->setStatusCode(Response::HTTP_OK);
-
-        return $view;
-    }
-
-    /**
-     * @Route("", name="account_new", methods={"POST"})
-     * @Cache(public=false, maxage="0", smaxage="0")
-     */
-    public function accounts_newAction(
-        AccountKit $accountKit,
-        Authentication $authentication,
-        Request $request,
-        SerializerInterface $serializer
-    ) {
-        $profile = $accountKit->profileCreate($request);
-
-        $uid = $profile->getFirebaseId();
-        $user_id = $profile->getId();
-
-        $firebase_token = $authentication->createCustomToken($uid);
-
-        $data = array();
-        $data['user_id'] = $user_id;
-        $data['firebase_token'] = $firebase_token;
-
-        $view = View::create();
-        $view->setData($data);
-        $view->setStatusCode(Response::HTTP_CREATED);
-
-        return $view;
-    }
-
-    /**
-     * @Route("/edit_avatar", name="account_edit_avatar", methods={"POST"})
-     */
-    public function edit_avatarAction(
-        Authentication $authentication,
-        EntityManagerInterface $em,
-        Request $request,
-        ProfileCreateAvatar $profileCreateAvatar
-    ) {
-        $user_id = $authentication->userIdFromRequest($request);
-
-        $view = View::create();
-
-        $avatar_encoded = null;
-
-        $avatar_data = $request->get('avatar');
-        if (!$avatar_data) {
-            $data['error'] = 'A avatar must be uploaded';
-            $view->setData($data);
-            $view->setStatusCode(Response::HTTP_BAD_REQUEST);
-
-            return $view;
-        }
-
-        $avatar_array = explode(',', $avatar_data);
-        $avatar_encoded = $avatar_array[1];
-        $avatar_encoded = str_replace(' ', '+', $avatar_encoded);
-
-        $avatar_decoded = base64_decode($avatar_encoded);
-        $im = imagecreatefromstring($avatar_decoded);
-        if (false === $im) {
-            $data['error'] = 'That image is malformed';
-            $view->setData($data);
-            $view->setStatusCode(Response::HTTP_BAD_REQUEST);
-
-            return $view;
-        }
-
-        imagedestroy($im);
-
-        $profile = $em
-            ->getRepository('App:Profiles')
-            ->queryProfileById($user_id);
-
-        $avatar_version = $profile->getAvatarversion();
-        $version = $avatar_version + 1;
-
-        // Upload & Replace User Avatar
-        $profileCreateAvatar->create_avatar($user_id, $avatar_encoded, $version);
-
-        $view->setStatusCode(Response::HTTP_OK);
 
         return $view;
     }
@@ -200,6 +97,7 @@ class AccountsController extends AbstractFOSRestController
     public function edit_submitAction(
         Authentication $authentication,
         EntityManagerInterface $em,
+        ProfileCreateAvatar $profileCreateAvatar,
         Request $request,
         SerializerInterface $serializer,
         UserCheck $userCheck
@@ -221,27 +119,29 @@ class AccountsController extends AbstractFOSRestController
 
         $view = View::create();
 
-        $birthday = DateTime::createFromFormat('Y-m-d', $birthday_string);
-        if (false === $birthday) {
+        if ($birthday_string) {
+            $birthday = DateTime::createFromFormat('Y-m-d', $birthday_string);
+            if (false === $birthday) {
+                $view->setStatusCode(Response::HTTP_BAD_REQUEST);
+
+                return $view;
+            }
+        }
+
+        if ($gender && 'Male' !== $gender && 'Female' !== $gender) {
             $view->setStatusCode(Response::HTTP_BAD_REQUEST);
 
             return $view;
         }
 
-        if ('Male' !== $gender && 'Female' !== $gender) {
-            $view->setStatusCode(Response::HTTP_BAD_REQUEST);
-
-            return $view;
-        }
-
-        if (!$username || !$email || !$firstname || !$lastname || $country_id < 1) {
+        if (!$username || !$firstname || !$lastname || !$bio /* || $country_id < 1 */) {
             $view->setStatusCode(Response::HTTP_BAD_REQUEST);
 
             return $view;
         }
 
         $profile = $em
-            ->getRepository('App:Profiles')
+            ->getRepository(Profiles::class)
             ->queryProfileById($user_id);
 
         $currentUsername = $profile->getUsername();
@@ -261,6 +161,7 @@ class AccountsController extends AbstractFOSRestController
             }
             $profile->setUsername($username);
         }
+
         if ($email) {
             // Check email
             $check_email = $userCheck->checkEmail($email);
@@ -292,6 +193,39 @@ class AccountsController extends AbstractFOSRestController
 
         $profile->setFirstname($firstname);
         $profile->setLastname($lastname);
+
+        if ($bio) {
+            $profile->setBio($bio);
+        }
+
+        if ($gender) {
+            $profile->setGender($gender);
+        }
+
+        $avatar_encoded = null;
+
+        $avatar_data = $request->get('avatar');
+        if ($avatar_data) {
+            $avatar_array = explode(',', $avatar_data);
+            $avatar_encoded = $avatar_array[1];
+            $avatar_encoded = str_replace(' ', '+', $avatar_encoded);
+
+            $avatar_decoded = base64_decode($avatar_encoded);
+            $im = imagecreatefromstring($avatar_decoded);
+            if (false !== $im) {
+                imagedestroy($im);
+
+                $avatar_version = $profile->getAvatarversion();
+                $version = $avatar_version + 1;
+
+                // Upload & Replace User Avatar
+                $did_upload = $profileCreateAvatar->create_avatar($user_id, $avatar_encoded, $version);
+
+                if (true === $did_upload) {
+                    $profile->setAvatarversion($version);
+                }
+            }
+        }
 
         $em->flush();
 
