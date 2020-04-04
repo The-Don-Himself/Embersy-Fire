@@ -1,7 +1,9 @@
-$mdc-theme-primary: #009688;
-$mdc-theme-secondary: #00bcd4;
-$mdc-theme-background: #ffffff;
-
+@use "@material/theme" with (
+  $primary: #009688,
+  $secondary: #00bcd4,
+  $background: #ffffff
+);
+@use "@material/image-list";
 @import "material-components-web/material-components-web";
 
 .mdc-text-field--box:not(.mdc-text-field--disabled) {
@@ -243,7 +245,7 @@ body {
 }
 
 .my-masonry-image-list {
-	@include mdc-image-list-masonry-columns(3);
+  @include image-list.masonry-columns(3);
 }
 
 .image-upload-wrapper {

@@ -10,15 +10,13 @@ fos_rest:
         view_response_listener: force
         formats:
             json: true
-        templating_formats:
-            html: true
         mime_types:
             json: ['application/json', 'application/json;version=1.0', 'application/json;version=1.1']
             jpg: ['image/jpeg']
             png: ['image/png']
     exception:
         enabled: true
-        exception_controller: 'fos_rest.exception.controller:showAction'
+        exception_controller: 'fos_rest.exception.controller::showAction'
     body_listener: true
     param_fetcher_listener: true
     allowed_methods_listener: true

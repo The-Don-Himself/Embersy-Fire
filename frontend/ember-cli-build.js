@@ -109,6 +109,8 @@ module.exports = function(defaults) {
     },
     sassOptions: {
       implementation: require("sass"),
+      // See https://github.com/webpack-contrib/sass-loader/issues/804
+      webpackImporter: false,
       includePaths: [
         'node_modules'
       ]
