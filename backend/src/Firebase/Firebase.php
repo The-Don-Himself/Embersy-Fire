@@ -3,8 +3,8 @@
 namespace App\Firebase;
 
 use Kreait\Firebase\Factory;
-use Kreait\Firebase\ServiceAccount;
 use Symfony\Component\Cache\Simple\ApcuCache;
+use Symfony\Component\Cache\Adapter\ApcuAdapter;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
 class Firebase
@@ -19,7 +19,7 @@ class Firebase
         $this->kernel_environment = $params->get('kernel.environment');
     }
 
-    public function getFirebase()
+    public function getFactory()
     {
         $kernel_environment = $this->kernel_environment;
         if ('dev' == $kernel_environment) {
@@ -27,14 +27,15 @@ class Firebase
         } else {
             $credentialsPath = realpath($this->kernel_root_dir.'/../keys/embersy-fire-firebase-adminsdk.json');
         }
-        $serviceAccount = ServiceAccount::fromJsonFile($credentialsPath);
+
+        $serviceAccount = $credentialsPath;
 
         $cache = new ApcuCache();
-        $firebase = (new Factory())
+        $factory = (new Factory())
             ->withServiceAccount($serviceAccount)
-            ->withVerifierCache($cache)
-            ->create();
+			//->withAuthTokenCache($cache)
+            ->withVerifierCache($cache);
 
-        return $firebase;
+        return $factory;
     }
 }

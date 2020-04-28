@@ -4,18 +4,18 @@ namespace App\Firebase;
 
 class Messaging
 {
-    private $firebase;
+    private $factory;
 
     public function __construct(Firebase $firebase)
     {
-        $this->firebase = $firebase->getFirebase();
+		$this->factory = $firebase->getFactory();
     }
 
     public function getMessaging()
     {
-        $firebase = $this->firebase;
+        $factory = $this->factory;
 
-        $messaging = $firebase->getMessaging();
+        $messaging = $factory->createMessaging();
 
         return $messaging;
     }

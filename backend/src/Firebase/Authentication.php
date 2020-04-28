@@ -16,18 +16,18 @@ class Authentication
     // instance of Lcobucci\JWT\Token
     private $verifiedIdToken;
 
-    private $firebase;
+    private $factory;
 
     public function __construct(Firebase $firebase)
     {
-        $this->firebase = $firebase->getFirebase();
+        $this->factory = $firebase->getFactory();
     }
 
     public function getAuth()
     {
-        $firebase = $this->firebase;
+        $factory = $this->factory;
 
-        $auth = $firebase->getAuth();
+        $auth = $factory->createAuth();
 
         return $auth;
     }
@@ -54,10 +54,10 @@ class Authentication
             throw new AccessDeniedHttpException('Access Token Is Required'); // 403
         }
 
-        $firebase = $this->firebase;
+        $auth = $this->getAuth();
 
         try {
-            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token);
+            $verifiedIdToken = $auth->verifyIdToken($token);
         } catch (ExpiredToken $e) {
             throw new AccessDeniedHttpException($e->getMessage()); // 403
         } catch (IssuedInTheFuture $e) {
@@ -79,10 +79,10 @@ class Authentication
             throw new AccessDeniedHttpException('Access Token Is Required'); // 403
         }
 
-        $firebase = $this->firebase;
+        $auth = $this->getAuth();
 
         try {
-            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token);
+            $verifiedIdToken = $auth->verifyIdToken($token);
         } catch (ExpiredToken $e) {
             throw new AccessDeniedHttpException($e->getMessage()); // 403
         } catch (IssuedInTheFuture $e) {
@@ -110,10 +110,10 @@ class Authentication
             throw new AccessDeniedHttpException('Access Token Is Required'); // 403
         }
 
-        $firebase = $this->firebase;
+        $auth = $this->getAuth();
 
         try {
-            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token);
+            $verifiedIdToken = $auth->verifyIdToken($token);
         } catch (ExpiredToken $e) {
             throw new AccessDeniedHttpException($e->getMessage()); // 403
         } catch (IssuedInTheFuture $e) {
@@ -136,10 +136,10 @@ class Authentication
             throw new AccessDeniedHttpException('Access Token Is Required'); // 403
         }
 
-        $firebase = $this->firebase;
+        $auth = $this->getAuth();
 
         try {
-            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token);
+            $verifiedIdToken = $auth->verifyIdToken($token);
         } catch (ExpiredToken $e) {
             throw new AccessDeniedHttpException($e->getMessage()); // 403
         } catch (IssuedInTheFuture $e) {
@@ -176,10 +176,10 @@ class Authentication
 
     public function verifyIdToken(string $token)
     {
-        $firebase = $this->firebase;
+        $auth = $this->getAuth();
 
         try {
-            $verifiedIdToken = $firebase->getAuth()->verifyIdToken($token);
+            $verifiedIdToken = $auth->verifyIdToken($token);
         } catch (ExpiredToken $e) {
             throw new AccessDeniedHttpException($e->getMessage()); // 403
         } catch (IssuedInTheFuture $e) {
